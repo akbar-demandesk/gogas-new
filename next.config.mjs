@@ -1,9 +1,15 @@
+// Use ESM `import` instead of `require`
+import nextPWA from "next-pwa";
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  images: {
-    domains: ["api.offertrunk.com", "via.placeholder.com"], // Added "via.placeholder.com"
-  },
+  ...nextPWA({
+    dest: "public",
+    register: true,
+    skipWaiting: true,
+    disable: process.env.NODE_ENV === "development",
+  }),
 };
 
 export default nextConfig;
