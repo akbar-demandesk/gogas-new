@@ -708,12 +708,10 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$ind
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$BottomNavbar$2f$BottomNavbar$2e$js__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/src/components/BottomNavbar/BottomNavbar.js [client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$toastify$2f$dist$2f$index$2e$mjs__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/react-toastify/dist/index.mjs [client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$qrcode$2e$react$2f$lib$2f$esm$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/qrcode.react/lib/esm/index.js [client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/next/image.js [client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/react-icons/fa/index.mjs [client] (ecmascript)");
 ;
 var _s = __turbopack_refresh__.signature();
 "use client";
-;
 ;
 ;
 ;
@@ -762,22 +760,6 @@ function GoGasProcess2() {
             setMounted(true);
         }
     }["GoGasProcess2.useEffect"], []);
-    // const handleOnline = () => {
-    //   setIsOffline(false);
-    //   const gogasForm = JSON.parse(localStorage.getItem("gogasForm") || "[]");
-    //   const unsyncData = gogasForm.filter((item) => item.status === "unsync");
-    //   if (unsyncData.length > 0) {
-    //     toast.info("Syncing offline data to the server...");
-    //     setTimeout(() => {
-    //       // Simulate syncing data to server
-    //       const updatedData = gogasForm.map((item) =>
-    //         item.status === "unsync" ? { ...item, status: "sync" } : item
-    //       );
-    //       localStorage.setItem("gogasForm", JSON.stringify(updatedData));
-    //       toast.success("All offline data synced successfully!");
-    //     }, 2000);
-    //   }
-    // };
     const handleOnline = ()=>{
         setIsOffline(false);
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$toastify$2f$dist$2f$index$2e$mjs__$5b$client$5d$__$28$ecmascript$29$__["toast"].info("You are back online. Unsynced data is still available.");
@@ -854,7 +836,6 @@ function GoGasProcess2() {
             status: "unsync",
             createdAt: new Date().toISOString()
         };
-        // Add a STATIC past date entry for testing
         const pastEntry = {
             ...formData,
             status: "unsync",
@@ -959,7 +940,7 @@ function GoGasProcess2() {
                             children: "GoGas coupons redemption with camera"
                         }, void 0, false, {
                             fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                            lineNumber: 288,
+                            lineNumber: 267,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -968,12 +949,12 @@ function GoGasProcess2() {
                                 className: `bg-purple-600 h-2.5 rounded-full ${step === 1 ? "w-1/2" : "w-full"}`
                             }, void 0, false, {
                                 fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                                lineNumber: 293,
+                                lineNumber: 272,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                            lineNumber: 292,
+                            lineNumber: 271,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -985,7 +966,7 @@ function GoGasProcess2() {
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                            lineNumber: 299,
+                            lineNumber: 278,
                             columnNumber: 11
                         }, this),
                         step === 1 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["Fragment"], {
@@ -998,7 +979,7 @@ function GoGasProcess2() {
                                             children: "1. Scan QR"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                                            lineNumber: 306,
+                                            lineNumber: 285,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1011,19 +992,19 @@ function GoGasProcess2() {
                                                         className: "mr-2"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                                                        lineNumber: 314,
+                                                        lineNumber: 293,
                                                         columnNumber: 21
                                                     }, this),
                                                     " Scan"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                                                lineNumber: 310,
+                                                lineNumber: 289,
                                                 columnNumber: 19
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                                            lineNumber: 309,
+                                            lineNumber: 288,
                                             columnNumber: 17
                                         }, this),
                                         mounted && qrCode && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1033,18 +1014,18 @@ function GoGasProcess2() {
                                                 size: 128
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                                                lineNumber: 319,
+                                                lineNumber: 298,
                                                 columnNumber: 21
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                                            lineNumber: 318,
+                                            lineNumber: 297,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                                    lineNumber: 305,
+                                    lineNumber: 284,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1059,13 +1040,13 @@ function GoGasProcess2() {
                                                     children: "*"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                                                    lineNumber: 326,
+                                                    lineNumber: 305,
                                                     columnNumber: 34
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                                            lineNumber: 325,
+                                            lineNumber: 304,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1075,7 +1056,7 @@ function GoGasProcess2() {
                                                     className: "absolute left-3 top-3 text-gray-400 text-lg"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                                                    lineNumber: 330,
+                                                    lineNumber: 309,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -1087,19 +1068,19 @@ function GoGasProcess2() {
                                                     className: "w-full border border-gray-300 p-2 pl-10 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                                                    lineNumber: 331,
+                                                    lineNumber: 310,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                                            lineNumber: 329,
+                                            lineNumber: 308,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                                    lineNumber: 324,
+                                    lineNumber: 303,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1115,13 +1096,13 @@ function GoGasProcess2() {
                                                     children: "*"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                                                    lineNumber: 345,
+                                                    lineNumber: 324,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                                            lineNumber: 343,
+                                            lineNumber: 322,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -1133,13 +1114,13 @@ function GoGasProcess2() {
                                             className: "w-full border border-gray-300 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                                            lineNumber: 347,
+                                            lineNumber: 326,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                                    lineNumber: 342,
+                                    lineNumber: 321,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1148,7 +1129,7 @@ function GoGasProcess2() {
                                     children: "Next"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                                    lineNumber: 357,
+                                    lineNumber: 336,
                                     columnNumber: 15
                                 }, this)
                             ]
@@ -1163,7 +1144,7 @@ function GoGasProcess2() {
                                             children: "4. Amount To Be Mentioned in Despenser"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                                            lineNumber: 369,
+                                            lineNumber: 348,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -1175,13 +1156,13 @@ function GoGasProcess2() {
                                             className: "w-full border border-gray-300 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                                            lineNumber: 372,
+                                            lineNumber: 351,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                                    lineNumber: 368,
+                                    lineNumber: 347,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1196,13 +1177,13 @@ function GoGasProcess2() {
                                                     children: "*"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                                                    lineNumber: 444,
+                                                    lineNumber: 423,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                                            lineNumber: 442,
+                                            lineNumber: 421,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1214,17 +1195,17 @@ function GoGasProcess2() {
                                                     className: "text-2xl"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                                                    lineNumber: 454,
+                                                    lineNumber: 433,
                                                     columnNumber: 23
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                                                lineNumber: 450,
+                                                lineNumber: 429,
                                                 columnNumber: 21
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                                            lineNumber: 448,
+                                            lineNumber: 427,
                                             columnNumber: 17
                                         }, this),
                                         isCameraOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1238,7 +1219,7 @@ function GoGasProcess2() {
                                                     autoPlay: true
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                                                    lineNumber: 462,
+                                                    lineNumber: 441,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1247,13 +1228,13 @@ function GoGasProcess2() {
                                                     children: "Capture Photo"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                                                    lineNumber: 471,
+                                                    lineNumber: 450,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                                            lineNumber: 461,
+                                            lineNumber: 440,
                                             columnNumber: 19
                                         }, this),
                                         formData.capturedImage && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1264,7 +1245,7 @@ function GoGasProcess2() {
                                                     children: "📸 Captured Image:"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                                                    lineNumber: 483,
+                                                    lineNumber: 462,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
@@ -1274,13 +1255,13 @@ function GoGasProcess2() {
                                                     width: "320"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                                                    lineNumber: 486,
+                                                    lineNumber: 465,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                                            lineNumber: 482,
+                                            lineNumber: 461,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("canvas", {
@@ -1292,13 +1273,13 @@ function GoGasProcess2() {
                                             height: "180"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                                            lineNumber: 495,
+                                            lineNumber: 474,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                                    lineNumber: 441,
+                                    lineNumber: 420,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1309,7 +1290,7 @@ function GoGasProcess2() {
                                             children: "6. Maximum Extraa Amount (in Rs)"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                                            lineNumber: 504,
+                                            lineNumber: 483,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -1321,13 +1302,13 @@ function GoGasProcess2() {
                                             className: "w-full border border-gray-300 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                                            lineNumber: 507,
+                                            lineNumber: 486,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                                    lineNumber: 503,
+                                    lineNumber: 482,
                                     columnNumber: 15
                                 }, this),
                                 isOffline ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1339,7 +1320,7 @@ function GoGasProcess2() {
                                             children: "Previous"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                                            lineNumber: 589,
+                                            lineNumber: 498,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1348,13 +1329,13 @@ function GoGasProcess2() {
                                             children: "Mark Offline"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                                            lineNumber: 601,
+                                            lineNumber: 505,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                                    lineNumber: 588,
+                                    lineNumber: 497,
                                     columnNumber: 17
                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "flex flex-row max-[408px]:flex-col justify-between gap-2 w-full",
@@ -1365,7 +1346,7 @@ function GoGasProcess2() {
                                             children: "Previous"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                                            lineNumber: 610,
+                                            lineNumber: 514,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1376,14 +1357,14 @@ function GoGasProcess2() {
                                                     className: "inline mr-1"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                                                    lineNumber: 620,
+                                                    lineNumber: 524,
                                                     columnNumber: 21
                                                 }, this),
                                                 " Home"
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                                            lineNumber: 616,
+                                            lineNumber: 520,
                                             columnNumber: 19
                                         }, this),
                                         isLoading ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1392,7 +1373,7 @@ function GoGasProcess2() {
                                             children: "Processing..."
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                                            lineNumber: 624,
+                                            lineNumber: 528,
                                             columnNumber: 21
                                         }, this) : showMarkOfflineBtn ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "flex flex-row max-[408px]:flex-col gap-2 w-full",
@@ -1403,7 +1384,7 @@ function GoGasProcess2() {
                                                     children: "Mark Offline"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                                                    lineNumber: 632,
+                                                    lineNumber: 536,
                                                     columnNumber: 23
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1414,20 +1395,20 @@ function GoGasProcess2() {
                                                             className: "inline mr-1"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                                                            lineNumber: 644,
+                                                            lineNumber: 548,
                                                             columnNumber: 25
                                                         }, this),
                                                         " Home"
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                                                    lineNumber: 638,
+                                                    lineNumber: 542,
                                                     columnNumber: 23
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                                            lineNumber: 631,
+                                            lineNumber: 535,
                                             columnNumber: 21
                                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                             onClick: handleComplete,
@@ -1435,13 +1416,13 @@ function GoGasProcess2() {
                                             children: "Complete"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                                            lineNumber: 648,
+                                            lineNumber: 552,
                                             columnNumber: 21
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                                    lineNumber: 609,
+                                    lineNumber: 513,
                                     columnNumber: 17
                                 }, this)
                             ]
@@ -1455,47 +1436,47 @@ function GoGasProcess2() {
                                     children: "MTPL"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                                    lineNumber: 661,
+                                    lineNumber: 565,
                                     columnNumber: 22
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                            lineNumber: 660,
+                            lineNumber: 564,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                    lineNumber: 284,
+                    lineNumber: 263,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                lineNumber: 283,
+                lineNumber: 262,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "md:mt-15",
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$BottomNavbar$2f$BottomNavbar$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                     fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                    lineNumber: 667,
+                    lineNumber: 571,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                lineNumber: 666,
+                lineNumber: 570,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$toastify$2f$dist$2f$index$2e$mjs__$5b$client$5d$__$28$ecmascript$29$__["ToastContainer"], {}, void 0, false, {
                     fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                    lineNumber: 671,
+                    lineNumber: 575,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/components/GoGoasForm1/GoGasProcess2.js",
-                lineNumber: 670,
+                lineNumber: 574,
                 columnNumber: 7
             }, this)
         ]

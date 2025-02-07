@@ -152,7 +152,7 @@ function OfflineDataTable() {
 
   return (
     <>
-      <div className="flex flex-col items-center min-h-screen bg-[#FFE6A9] p-6 overflow-auto">
+      <div className="flex flex-col items-center min-h-screen bg-[#FFE6A9] p-6 overflow-auto ">
         <h2 className="text-2xl font-bold text-gray-800 mb-4">
           Offline Data Table <span className="text-purple-800">(Unsync)</span>
         </h2>
@@ -201,7 +201,7 @@ function OfflineDataTable() {
         {filteredData.length === 0 ? (
           <p className="text-gray-600">No offline data available.</p>
         ) : (
-          <div className="overflow-x-auto  w-full max-w-4xl bg-white shadow-md p-4 rounded-lg">
+          <div className="overflow-x-auto  w-full max-w-4xl bg-white shadow-md p-4 rounded-lg mb-5">
             {filteredData.length > 0 && (
               <div className="flex  gap-4 mt-4 justify-end mb-5">
                 <button

@@ -5,7 +5,6 @@ import BottomNavbar from "../BottomNavbar/BottomNavbar";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { QRCodeCanvas } from "qrcode.react";
-import Image from "next/image";
 
 function GoGasProcess2() {
   const [step, setStep] = useState(1);
@@ -49,25 +48,6 @@ function GoGasProcess2() {
   useEffect(() => {
     setMounted(true);
   }, []);
-
-  // const handleOnline = () => {
-  //   setIsOffline(false);
-  //   const gogasForm = JSON.parse(localStorage.getItem("gogasForm") || "[]");
-
-  //   const unsyncData = gogasForm.filter((item) => item.status === "unsync");
-  //   if (unsyncData.length > 0) {
-  //     toast.info("Syncing offline data to the server...");
-  //     setTimeout(() => {
-  //       // Simulate syncing data to server
-  //       const updatedData = gogasForm.map((item) =>
-  //         item.status === "unsync" ? { ...item, status: "sync" } : item
-  //       );
-
-  //       localStorage.setItem("gogasForm", JSON.stringify(updatedData));
-  //       toast.success("All offline data synced successfully!");
-  //     }, 2000);
-  //   }
-  // };
 
   const handleOnline = () => {
     setIsOffline(false);
@@ -166,12 +146,11 @@ function GoGasProcess2() {
       createdAt: new Date().toISOString(), // Today's date
     };
 
-    // Add a STATIC past date entry for testing
     const pastEntry = {
       ...formData,
       status: "unsync",
-      createdAt: "2024-01-15T12:30:00.000Z", // Static past date
-      couponCode: formData.couponCode + "_past", // Different coupon code to avoid duplicate error
+      createdAt: "2024-01-15T12:30:00.000Z",
+      couponCode: formData.couponCode + "_past",
     };
 
     // Add both entries (today & past)
@@ -514,76 +493,6 @@ function GoGasProcess2() {
                 />
               </div>
 
-              {/* {isOffline ? (
-                <div className="flex flex-col sm:flex-row max-w-[408px]:flex-col justify-between mt-2 gap-2 w-full">
-                  <button
-                    onClick={() => setStep(1)}
-                    className="bg-white border border-purple-700 text-purple-700 font-bold py-2 px-4 rounded-lg transition duration-300 hover:bg-purple-50"
-                  >
-                    Previous
-                  </button>
-                  <button
-                    onClick={() => (window.location.href = "/dashoard/home")}
-                    className="bg-white border border-purple-700 text-black font-bold py-2 px-4 rounded-lg transition duration-300"
-                  >
-                    <FaHome className="inline mr-1" /> Home
-                  </button>
-                  <button
-                    onClick={markOffline}
-                    className="bg-purple-700 hover:bg-purple-800 text-white font-bold py-2 px-4 rounded-lg transition duration-300"
-                  >
-                    Mark Offline
-                  </button>
-                </div>
-              ) : (
-                <div className="flex flex-col sm:flex-row max-w-[408px]:flex-col justify-between gap-2 w-full">
-                  <button
-                    onClick={() => setStep(1)}
-                    className="bg-white border border-purple-700 text-purple-700 font-bold py-2 px-4 rounded-lg transition duration-300 hover:bg-purple-50"
-                  >
-                    Previous
-                  </button>
-                  <button
-                    onClick={() => (window.location.href = "/dashboard/home")}
-                    className="bg-white border border-purple-700 text-black font-bold py-2 px-4 rounded-lg transition duration-300"
-                  >
-                    <FaHome className="inline mr-1" /> Home
-                  </button>
-
-                  {isLoading ? (
-                    <button
-                      className="bg-purple-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300"
-                      disabled
-                    >
-                      Processing...
-                    </button>
-                  ) : showMarkOfflineBtn ? (
-                    <div className="flex gap-2">
-                      <button
-                        onClick={markOffline}
-                        className="bg-purple-700 hover:bg-purple-800 text-white font-bold py-2 px-4 rounded-lg transition duration-300"
-                      >
-                        Mark Offline
-                      </button>
-                      <button
-                        onClick={() =>
-                          (window.location.href = "/dashboard/home")
-                        }
-                        className="bg-white border border-purple-700 text-black font-bold py-2 px-4 rounded-lg transition duration-300"
-                      >
-                        <FaHome className="inline mr-1" /> Home
-                      </button>
-                    </div>
-                  ) : (
-                    <button
-                      onClick={handleComplete}
-                      className="bg-purple-700 hover:bg-purple-800 text-white font-bold py-2 px-4 rounded-lg transition duration-300"
-                    >
-                      Complete
-                    </button>
-                  )}
-                </div>
-              )} */}
               {isOffline ? (
                 <div className="flex flex-row max-[408px]:flex-col justify-between mt-2 gap-2 w-full">
                   <button
@@ -592,12 +501,7 @@ function GoGasProcess2() {
                   >
                     Previous
                   </button>
-                  {/* <button
-                    onClick={() => (window.location.href = "/dashboard/home")}
-                    className="bg-white border border-purple-700 text-black font-bold py-2 px-4 rounded-lg transition duration-300 w-full max-[408px]:w-full"
-                  >
-                    <FaHome className="inline mr-1" /> Home
-                  </button> */}
+
                   <button
                     onClick={markOffline}
                     className="bg-purple-700 hover:bg-purple-800 text-white font-bold py-2 px-4 rounded-lg transition duration-300 w-full max-[408px]:w-full"
@@ -670,22 +574,6 @@ function GoGasProcess2() {
       <div>
         <ToastContainer />
       </div>
-      {/* {isOffline && (
-        <div className="flex justify-between mt-2">
-          <button
-            onClick={markOffline}
-            className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300"
-          >
-            Mark Offline
-          </button>
-          <button
-            onClick={() => (window.location.href = "/")}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300"
-          >
-            <FaHome className="inline mr-1" /> Home
-          </button>
-        </div>
-      )} */}
     </>
   );
 }
