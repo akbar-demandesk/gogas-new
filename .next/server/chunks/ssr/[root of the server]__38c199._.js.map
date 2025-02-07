@@ -1,0 +1,11 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 55, "column": 0}, "map": {"version":3,"sources":["file://C%3A/Users/admin/Desktop/Go-Gas/offer-trunk-new/src/pages/_document.js"],"sourcesContent":["import { Html, Head, Main, NextScript } from \"next/document\";\r\n\r\nexport default function Document() {\r\n  return (\r\n    <Html lang=\"en\">\r\n      <Head />\r\n      <body className=\"antialiased\">\r\n        <Main />\r\n        <NextScript />\r\n      </body>\r\n    </Html>\r\n  );\r\n}\r\n"],"names":[],"mappings":";;;;AAAA;;;AAEe,SAAS;IACtB,qBACE,qKAAC,yHAAA,CAAA,OAAI;QAAC,MAAK;;0BACT,qKAAC,yHAAA,CAAA,OAAI;;;;;0BACL,qKAAC;gBAAK,WAAU;;kCACd,qKAAC,yHAAA,CAAA,OAAI;;;;;kCACL,qKAAC,yHAAA,CAAA,aAAU;;;;;;;;;;;;;;;;;AAInB"}},
+    {"offset": {"line": 97, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}},
+    {"offset": {"line": 103, "column": 0}, "map": {"version":3,"sources":["file://C%3A/Users/admin/Desktop/Go-Gas/offer-trunk-new/src/pages/_app.js"],"sourcesContent":["import \"@/styles/globals.css\";\r\n\r\nexport default function App({ Component, pageProps }) {\r\n  return <Component {...pageProps} />;\r\n}\r\n"],"names":[],"mappings":";;;;;;AAEe,SAAS,IAAI,EAAE,SAAS,EAAE,SAAS,EAAE;IAClD,qBAAO,qKAAC;QAAW,GAAG,SAAS;;;;;;AACjC"}},
+    {"offset": {"line": 118, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}},
+    {"offset": {"line": 124, "column": 0}, "map": {"version":3,"sources":["file://C%3A/Users/admin/Desktop/Go-Gas/offer-trunk-new/src/pages/index.js"],"sourcesContent":["export default function Home() {\r\n  return (\r\n    <div className=\"min-h-screen flex items-center justify-center bg-gray-100\">\r\n      <div className=\"text-center p-8 bg-white rounded-lg shadow-lg\">\r\n        <h1 className=\"text-4xl font-bold text-blue-500 mb-4\">\r\n          Hello, Tailwind CSS!\r\n        </h1>\r\n        <p className=\"text-lg text-gray-700\">\r\n          Tailwind is now working with React + Vite 🎉\r\n        </p>\r\n      </div>\r\n    </div>\r\n  );\r\n}\r\n"],"names":[],"mappings":";;;;;AAAe,SAAS;IACtB,qBACE,qKAAC;QAAI,WAAU;kBACb,cAAA,qKAAC;YAAI,WAAU;;8BACb,qKAAC;oBAAG,WAAU;8BAAwC;;;;;;8BAGtD,qKAAC;oBAAE,WAAU;8BAAwB;;;;;;;;;;;;;;;;;AAM7C"}},
+    {"offset": {"line": 163, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
+}
