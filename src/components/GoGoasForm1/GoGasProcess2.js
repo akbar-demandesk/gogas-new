@@ -483,7 +483,7 @@ function GoGasProcess2() {
                     <p className="font-semibold text-gray-700">
                       📸 Captured Image:
                     </p>
-                    <Image
+                    <img
                       src={formData.capturedImage}
                       alt="Captured"
                       className="rounded-lg shadow-md mt-2 border border-gray-300"
@@ -662,10 +662,10 @@ function GoGasProcess2() {
           </div>
         </div>
       </div>
-      <div>
+      {/* <div className="md:mb-5"></div> */}
+      <div className="md:mt-15">
         <BottomNavbar />
       </div>
-      <div className="md:mt-5" />
 
       <div>
         <ToastContainer />

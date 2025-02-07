@@ -407,7 +407,7 @@ function OfflineDataTable() {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["Fragment"], {
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
-                className: "flex flex-col items-center min-h-screen bg-[#FFE6A9] p-6",
+                className: "flex flex-col items-center min-h-screen bg-[#FFE6A9] p-6 overflow-auto",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("h2", {
                         className: "text-2xl font-bold text-gray-800 mb-4",
@@ -431,7 +431,7 @@ function OfflineDataTable() {
                         className: "flex flex-col sm:flex-row sm:justify-center sm:items-center gap-4 sm:gap-6 mb-6 w-full text-center bg-white shadow-md p-4 rounded-lg",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
-                                className: "flex flex-col sm:flex-row items-start sm:items-center gap-2 w-full sm:w-auto",
+                                className: "flex flex-col items-start gap-2 w-full sm:w-auto",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("label", {
                                         className: "text-black font-semibold",
@@ -458,7 +458,7 @@ function OfflineDataTable() {
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
-                                className: "flex flex-col sm:flex-row items-start sm:items-center gap-2 w-full sm:w-auto",
+                                className: "flex flex-col items-start gap-2 w-full sm:w-auto",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("label", {
                                         className: "text-black font-semibold",
@@ -516,206 +516,208 @@ function OfflineDataTable() {
                         lineNumber: 202,
                         columnNumber: 11
                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
-                        className: "overflow-x-auto  w-full max-w-4xl bg-white shadow-md p-4",
-                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("table", {
-                            className: "w-full border border-gray-300 shadow-md rounded-lg",
-                            children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("thead", {
-                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("tr", {
-                                        className: "bg-gradient-to-r from-yellow-400 to-yellow-500 text-gray-700 text-left",
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("th", {
-                                                className: "p-2 border text-center",
-                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("input", {
-                                                    type: "checkbox",
-                                                    onChange: handleSelectAll,
-                                                    checked: selectedItems.length === filteredData.length && filteredData.length > 0,
-                                                    className: "w-4 h-4"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                                    lineNumber: 209,
-                                                    columnNumber: 21
-                                                }, this)
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                                lineNumber: 208,
-                                                columnNumber: 19
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("th", {
-                                                className: "p-2 border",
-                                                children: "Scan Data"
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                                lineNumber: 219,
-                                                columnNumber: 19
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("th", {
-                                                className: "p-2 border",
-                                                children: "Coupon Code"
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                                lineNumber: 220,
-                                                columnNumber: 19
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("th", {
-                                                className: "p-2 border",
-                                                children: "Cash to Collect"
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                                lineNumber: 221,
-                                                columnNumber: 19
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("th", {
-                                                className: "p-2 border",
-                                                children: "Dispenser Amount"
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                                lineNumber: 222,
-                                                columnNumber: 19
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("th", {
-                                                className: "p-2 border",
-                                                children: "Extra Amount"
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                                lineNumber: 223,
-                                                columnNumber: 19
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("th", {
-                                                className: "p-2 border",
-                                                children: "Status"
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                                lineNumber: 224,
-                                                columnNumber: 19
-                                            }, this)
-                                        ]
-                                    }, void 0, true, {
+                        className: "overflow-x-auto  w-full max-w-4xl bg-white shadow-md p-4 rounded-lg",
+                        children: [
+                            filteredData.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                                className: "flex  gap-4 mt-4 justify-end mb-5",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("button", {
+                                        onClick: handleSyncSelected,
+                                        className: "bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 w-full sm:w-auto",
+                                        children: "Sync Selected"
+                                    }, void 0, false, {
                                         fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
                                         lineNumber: 207,
                                         columnNumber: 17
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("button", {
+                                        onClick: handleSyncAll,
+                                        className: "bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 w-full sm:w-auto",
+                                        children: "Sync All"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
+                                        lineNumber: 213,
+                                        columnNumber: 17
                                     }, this)
-                                }, void 0, false, {
-                                    fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                    lineNumber: 206,
-                                    columnNumber: 15
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("tbody", {
-                                    children: filteredData.map((item, index)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("tr", {
-                                            className: "border text-gray-800 bg-yellow-100",
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
+                                lineNumber: 206,
+                                columnNumber: 15
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("table", {
+                                className: "w-full border border-gray-300 shadow-md rounded-lg",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("thead", {
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("tr", {
+                                            className: "bg-gradient-to-r from-yellow-400 to-yellow-500 text-gray-700 text-left",
                                             children: [
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("td", {
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("th", {
                                                     className: "p-2 border text-center",
                                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("input", {
                                                         type: "checkbox",
-                                                        checked: selectedItems.includes(index),
-                                                        onChange: ()=>handleSelect(index),
+                                                        onChange: handleSelectAll,
+                                                        checked: selectedItems.length === filteredData.length && filteredData.length > 0,
                                                         className: "w-4 h-4"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                                        lineNumber: 234,
-                                                        columnNumber: 23
+                                                        lineNumber: 225,
+                                                        columnNumber: 21
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                                    lineNumber: 233,
-                                                    columnNumber: 21
+                                                    lineNumber: 224,
+                                                    columnNumber: 19
                                                 }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("td", {
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("th", {
                                                     className: "p-2 border",
-                                                    children: item.scanData || "N/A"
+                                                    children: "Scan Data"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                                    lineNumber: 241,
-                                                    columnNumber: 21
+                                                    lineNumber: 235,
+                                                    columnNumber: 19
                                                 }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("td", {
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("th", {
                                                     className: "p-2 border",
-                                                    children: item.couponCode || "N/A"
+                                                    children: "Coupon Code"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                                    lineNumber: 242,
-                                                    columnNumber: 21
+                                                    lineNumber: 236,
+                                                    columnNumber: 19
                                                 }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("td", {
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("th", {
                                                     className: "p-2 border",
-                                                    children: item.cashToBeCollected || "N/A"
+                                                    children: "Cash to Collect"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                                    lineNumber: 243,
-                                                    columnNumber: 21
+                                                    lineNumber: 237,
+                                                    columnNumber: 19
                                                 }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("td", {
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("th", {
                                                     className: "p-2 border",
-                                                    children: item.dispenserAmount || "N/A"
+                                                    children: "Dispenser Amount"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                                    lineNumber: 246,
-                                                    columnNumber: 21
+                                                    lineNumber: 238,
+                                                    columnNumber: 19
                                                 }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("td", {
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("th", {
                                                     className: "p-2 border",
-                                                    children: item.extraAmount || "N/A"
+                                                    children: "Extra Amount"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                                    lineNumber: 249,
-                                                    columnNumber: 21
+                                                    lineNumber: 239,
+                                                    columnNumber: 19
                                                 }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("td", {
-                                                    className: "p-2 border text-red-500 font-bold",
-                                                    children: item.status
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("th", {
+                                                    className: "p-2 border",
+                                                    children: "Status"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                                    lineNumber: 250,
-                                                    columnNumber: 21
+                                                    lineNumber: 240,
+                                                    columnNumber: 19
                                                 }, this)
                                             ]
-                                        }, index, true, {
+                                        }, void 0, true, {
                                             fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                            lineNumber: 229,
-                                            columnNumber: 19
-                                        }, this))
-                                }, void 0, false, {
-                                    fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                    lineNumber: 227,
-                                    columnNumber: 15
-                                }, this)
-                            ]
-                        }, void 0, true, {
-                            fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                            lineNumber: 205,
-                            columnNumber: 13
-                        }, this)
-                    }, void 0, false, {
-                        fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                        lineNumber: 204,
-                        columnNumber: 11
-                    }, this),
-                    filteredData.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
-                        className: "flex gap-4 mt-4",
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("button", {
-                                onClick: handleSyncSelected,
-                                className: "bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300",
-                                children: "Sync Selected"
-                            }, void 0, false, {
+                                            lineNumber: 223,
+                                            columnNumber: 17
+                                        }, this)
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
+                                        lineNumber: 222,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("tbody", {
+                                        children: filteredData.map((item, index)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("tr", {
+                                                className: "border text-gray-800 bg-yellow-100",
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("td", {
+                                                        className: "p-2 border text-center",
+                                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("input", {
+                                                            type: "checkbox",
+                                                            checked: selectedItems.includes(index),
+                                                            onChange: ()=>handleSelect(index),
+                                                            className: "w-4 h-4"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
+                                                            lineNumber: 250,
+                                                            columnNumber: 23
+                                                        }, this)
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
+                                                        lineNumber: 249,
+                                                        columnNumber: 21
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("td", {
+                                                        className: "p-2 border",
+                                                        children: item.scanData || "N/A"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
+                                                        lineNumber: 257,
+                                                        columnNumber: 21
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("td", {
+                                                        className: "p-2 border",
+                                                        children: item.couponCode || "N/A"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
+                                                        lineNumber: 258,
+                                                        columnNumber: 21
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("td", {
+                                                        className: "p-2 border",
+                                                        children: item.cashToBeCollected || "N/A"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
+                                                        lineNumber: 259,
+                                                        columnNumber: 21
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("td", {
+                                                        className: "p-2 border",
+                                                        children: item.dispenserAmount || "N/A"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
+                                                        lineNumber: 262,
+                                                        columnNumber: 21
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("td", {
+                                                        className: "p-2 border",
+                                                        children: item.extraAmount || "N/A"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
+                                                        lineNumber: 265,
+                                                        columnNumber: 21
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("td", {
+                                                        className: "p-2 border text-red-500 font-bold",
+                                                        children: item.status
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
+                                                        lineNumber: 266,
+                                                        columnNumber: 21
+                                                    }, this)
+                                                ]
+                                            }, index, true, {
+                                                fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
+                                                lineNumber: 245,
+                                                columnNumber: 19
+                                            }, this))
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
+                                        lineNumber: 243,
+                                        columnNumber: 15
+                                    }, this)
+                                ]
+                            }, void 0, true, {
                                 fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                lineNumber: 262,
-                                columnNumber: 13
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("button", {
-                                onClick: handleSyncAll,
-                                className: "bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300",
-                                children: "Sync All"
-                            }, void 0, false, {
-                                fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                lineNumber: 268,
+                                lineNumber: 221,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                        lineNumber: 261,
+                        lineNumber: 204,
                         columnNumber: 11
                     }, this)
                 ]
@@ -725,6 +727,7 @@ function OfflineDataTable() {
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                className: "md:mt-15",
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$BottomNavbar$2f$BottomNavbar$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                     fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
                     lineNumber: 278,
@@ -738,12 +741,12 @@ function OfflineDataTable() {
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$externals$5d2f$react$2d$toastify__$5b$external$5d$__$28$react$2d$toastify$2c$__esm_import$29$__["ToastContainer"], {}, void 0, false, {
                     fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                    lineNumber: 281,
+                    lineNumber: 282,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                lineNumber: 280,
+                lineNumber: 281,
                 columnNumber: 7
             }, this)
         ]

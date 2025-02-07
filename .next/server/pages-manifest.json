@@ -2,5 +2,7 @@
   "/_app": "pages/_app.js",
   "/_document": "pages/_document.js",
   "/": "pages/index.js",
-  "/go-gas-form/GoGasForm2": "pages/go-gas-form/GoGasForm2.js"
+  "/go-gas-form/GoGasForm2": "pages/go-gas-form/GoGasForm2.js",
+  "/dashboard/home": "pages/dashboard/home.js",
+  "/offlinedata/offlinedatatable": "pages/offlinedata/offlinedatatable.js"
 }

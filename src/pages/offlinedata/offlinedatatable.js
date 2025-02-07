@@ -152,7 +152,7 @@ function OfflineDataTable() {
 
   return (
     <>
-      <div className="flex flex-col items-center min-h-screen bg-[#FFE6A9] p-6">
+      <div className="flex flex-col items-center min-h-screen bg-[#FFE6A9] p-6 overflow-auto">
         <h2 className="text-2xl font-bold text-gray-800 mb-4">
           Offline Data Table <span className="text-purple-800">(Unsync)</span>
         </h2>
@@ -160,7 +160,7 @@ function OfflineDataTable() {
         {/* Date Filter */}
         <div className="flex flex-col sm:flex-row sm:justify-center sm:items-center gap-4 sm:gap-6 mb-6 w-full text-center bg-white shadow-md p-4 rounded-lg">
           {/* Start Date */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 w-full sm:w-auto">
+          <div className="flex flex-col items-start gap-2 w-full sm:w-auto">
             <label className="text-black font-semibold">Start Date</label>
             <input
               type="date"
@@ -171,7 +171,7 @@ function OfflineDataTable() {
           </div>
 
           {/* End Date */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 w-full sm:w-auto">
+          <div className="flex flex-col items-start gap-2 w-full sm:w-auto">
             <label className="text-black font-semibold">End Date</label>
             <input
               type="date"
@@ -201,7 +201,23 @@ function OfflineDataTable() {
         {filteredData.length === 0 ? (
           <p className="text-gray-600">No offline data available.</p>
         ) : (
-          <div className="overflow-x-auto  w-full max-w-4xl bg-white shadow-md p-4">
+          <div className="overflow-x-auto  w-full max-w-4xl bg-white shadow-md p-4 rounded-lg">
+            {filteredData.length > 0 && (
+              <div className="flex  gap-4 mt-4 justify-end mb-5">
+                <button
+                  onClick={handleSyncSelected}
+                  className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 w-full sm:w-auto"
+                >
+                  Sync Selected
+                </button>
+                <button
+                  onClick={handleSyncAll}
+                  className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 w-full sm:w-auto"
+                >
+                  Sync All
+                </button>
+              </div>
+            )}
             <table className="w-full border border-gray-300 shadow-md rounded-lg">
               <thead>
                 <tr className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-gray-700 text-left">
@@ -256,27 +272,12 @@ function OfflineDataTable() {
             </table>
           </div>
         )}
-
-        {filteredData.length > 0 && (
-          <div className="flex gap-4 mt-4">
-            <button
-              onClick={handleSyncSelected}
-              className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300"
-            >
-              Sync Selected
-            </button>
-            <button
-              onClick={handleSyncAll}
-              className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300"
-            >
-              Sync All
-            </button>
-          </div>
-        )}
       </div>
-      <div>
+
+      <div className="md:mt-15">
         <BottomNavbar />
       </div>
+
       <div>
         <ToastContainer />
       </div>
