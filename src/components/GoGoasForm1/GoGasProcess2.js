@@ -5,6 +5,7 @@ import BottomNavbar from "../BottomNavbar/BottomNavbar";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { QRCodeCanvas } from "qrcode.react";
+import Image from "next/image";
 
 function GoGasProcess2() {
   const [step, setStep] = useState(1);
@@ -112,6 +113,38 @@ function GoGasProcess2() {
   //   toast.success("Data saved offline successfully!");
   // };
 
+  // const markOffline = () => {
+  //   const gogasForm = JSON.parse(localStorage.getItem("gogasForm") || "[]");
+
+  //   // Ignore "processing" status when checking for duplicates
+  //   const isDuplicate = gogasForm.some(
+  //     (item) =>
+  //       item.couponCode === formData.couponCode && item.status !== "processing"
+  //   );
+
+  //   if (isDuplicate) {
+  //     toast.error("Already exists with this coupon code!");
+  //     return; // Exit the function to avoid saving the duplicate
+  //   }
+
+  //   // Save new entry with "unsync" status
+  //   const newEntry = {
+  //     ...formData,
+  //     status: "unsync",
+  //     createdAt: new Date().toISOString(),
+  //   };
+
+  //   gogasForm.push(newEntry);
+  //   localStorage.setItem("gogasForm", JSON.stringify(gogasForm));
+
+  //   toast.success("Data saved offline successfully!");
+
+  //   // Wait a short time before navigating to allow toast to display
+  //   setTimeout(() => {
+  //     window.location.href = "/dashboard/home";
+  //   }, 1000); // 1-second delay
+  // };
+
   const markOffline = () => {
     const gogasForm = JSON.parse(localStorage.getItem("gogasForm") || "[]");
 
@@ -126,14 +159,23 @@ function GoGasProcess2() {
       return; // Exit the function to avoid saving the duplicate
     }
 
-    // Save new entry with "unsync" status
-    const newEntry = {
+    // Save today's entry
+    const todayEntry = {
       ...formData,
       status: "unsync",
-      createdAt: new Date().toISOString(),
+      createdAt: new Date().toISOString(), // Today's date
     };
 
-    gogasForm.push(newEntry);
+    // Add a STATIC past date entry for testing
+    const pastEntry = {
+      ...formData,
+      status: "unsync",
+      createdAt: "2024-01-15T12:30:00.000Z", // Static past date
+      couponCode: formData.couponCode + "_past", // Different coupon code to avoid duplicate error
+    };
+
+    // Add both entries (today & past)
+    gogasForm.push(todayEntry, pastEntry);
     localStorage.setItem("gogasForm", JSON.stringify(gogasForm));
 
     toast.success("Data saved offline successfully!");
@@ -189,7 +231,6 @@ function GoGasProcess2() {
   };
 
   const handleComplete = () => {
-    // Fetch and check for duplicate BEFORE showing "Processing" toast
     const gogasForm = JSON.parse(localStorage.getItem("gogasForm") || "[]");
 
     const isDuplicate = gogasForm.some(
@@ -198,15 +239,13 @@ function GoGasProcess2() {
 
     if (isDuplicate) {
       toast.error("Already exists with this coupon code!");
-      return; // Exit early, no processing toast should be shown
+      return;
     }
 
-    // Only show "Processing..." if no duplicate is found
     setIsLoading(true);
-    setShowMarkOfflineBtn(false); // Reset state before processing
+    setShowMarkOfflineBtn(false);
     toast.info("Processing... Please wait 20 seconds.");
 
-    // Add a placeholder entry to prevent duplicates during timeout
     const tempEntry = {
       ...formData,
       status: "processing",
@@ -216,14 +255,11 @@ function GoGasProcess2() {
     gogasForm.push(tempEntry);
     localStorage.setItem("gogasForm", JSON.stringify(gogasForm));
 
-    // Always wait 20 seconds before deciding offline/online
     setTimeout(() => {
       setIsLoading(false);
 
-      // Fetch updated data again
       let updatedForm = JSON.parse(localStorage.getItem("gogasForm") || "[]");
 
-      // Replace "processing" entry with actual status
       updatedForm = updatedForm.map((item) =>
         item.couponCode === formData.couponCode
           ? { ...item, status: navigator.onLine ? "sync" : "unsync" }
@@ -447,7 +483,7 @@ function GoGasProcess2() {
                     <p className="font-semibold text-gray-700">
                       📸 Captured Image:
                     </p>
-                    <img
+                    <Image
                       src={formData.capturedImage}
                       alt="Captured"
                       className="rounded-lg shadow-md mt-2 border border-gray-300"

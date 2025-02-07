@@ -700,215 +700,6 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
 
 var { r: __turbopack_require__, f: __turbopack_module_context__, i: __turbopack_import__, s: __turbopack_esm__, v: __turbopack_export_value__, n: __turbopack_export_namespace__, c: __turbopack_cache__, M: __turbopack_modules__, l: __turbopack_load__, j: __turbopack_dynamic__, P: __turbopack_resolve_absolute_path__, U: __turbopack_relative_url__, R: __turbopack_resolve_module_id_path__, b: __turbopack_worker_blob_url__, g: global, __dirname, k: __turbopack_refresh__, m: module, z: __turbopack_require_stub__ } = __turbopack_context__;
 {
-// import React, { useState, useEffect } from "react";
-// function OfflineDataTable() {
-//   const [offlineData, setOfflineData] = useState([]);
-//   const [selectedItems, setSelectedItems] = useState([]);
-//   const [startDate, setStartDate] = useState("");
-//   const [endDate, setEndDate] = useState("");
-//   useEffect(() => {
-//     // Get unsynchronized data from localStorage
-//     const storedData = JSON.parse(localStorage.getItem("gogasForm") || "[]");
-//     const unsyncData = storedData.filter((item) => item.status === "unsync");
-//     setOfflineData(unsyncData);
-//   }, []);
-//   // Handle start date change
-//   const handleStartDateChange = (e) => {
-//     setStartDate(e.target.value);
-//   };
-//   // Handle end date change
-//   const handleEndDateChange = (e) => {
-//     setEndDate(e.target.value);
-//   };
-//   // Filter offline data based on the date range
-//   const filterDataByDate = () => {
-//     if (!startDate && !endDate) {
-//       return offlineData; // ✅ Return full data if no filter is set
-//     }
-//     return offlineData.filter((item) => {
-//       const itemDate = new Date(item.createdAt);
-//       const start = startDate ? new Date(startDate) : null;
-//       const end = endDate ? new Date(endDate) : null;
-//       if (start && end) {
-//         return itemDate >= start && itemDate <= end;
-//       } else if (start) {
-//         return itemDate >= start;
-//       } else if (end) {
-//         return itemDate <= end;
-//       }
-//       return true;
-//     });
-//   };
-//   // Select/Deselect an individual row
-//   const handleSelect = (index) => {
-//     setSelectedItems((prevSelected) =>
-//       prevSelected.includes(index)
-//         ? prevSelected.filter((i) => i !== index)
-//         : [...prevSelected, index]
-//     );
-//   };
-//   // Select/Deselect all rows
-//   const handleSelectAll = () => {
-//     if (selectedItems.length === offlineData.length) {
-//       setSelectedItems([]); // Deselect all
-//     } else {
-//       setSelectedItems(offlineData.map((_, index) => index)); // Select all
-//     }
-//   };
-//   // Sync selected rows
-//   const handleSyncSelected = () => {
-//     if (selectedItems.length === 0) {
-//       alert("Please select at least one entry to sync.");
-//       return;
-//     }
-//     // Update selected rows to "sync"
-//     const updatedData = offlineData.map((item, index) =>
-//       selectedItems.includes(index) ? { ...item, status: "sync" } : item
-//     );
-//     // Update localStorage
-//     const allData = JSON.parse(localStorage.getItem("gogasForm") || "[]").map(
-//       (item) =>
-//         selectedItems.some(
-//           (idx) => offlineData[idx].couponCode === item.couponCode
-//         )
-//           ? { ...item, status: "sync" }
-//           : item
-//     );
-//     localStorage.setItem("gogasForm", JSON.stringify(allData));
-//     // Refresh the table state
-//     setOfflineData(updatedData.filter((item) => item.status === "unsync"));
-//     setSelectedItems([]);
-//     alert("Selected data has been synced successfully!");
-//   };
-//   // Sync all unsynced rows
-//   const handleSyncAll = () => {
-//     if (offlineData.length === 0) {
-//       alert("No offline data available to sync.");
-//       return;
-//     }
-//     // Update all rows to "sync"
-//     const updatedData = offlineData.map((item) => ({
-//       ...item,
-//       status: "sync",
-//     }));
-//     // Update localStorage
-//     const allData = JSON.parse(localStorage.getItem("gogasForm") || "[]").map(
-//       (item) => ({ ...item, status: "sync" })
-//     );
-//     localStorage.setItem("gogasForm", JSON.stringify(allData));
-//     // Refresh the table
-//     setOfflineData([]);
-//     setSelectedItems([]);
-//     alert("All offline data has been synced successfully!");
-//   };
-//   const filteredData = filterDataByDate();
-//   return (
-//     <div className="flex flex-col items-center min-h-screen bg-[#FFE6A9] p-6">
-//       <h2 className="text-2xl font-bold text-gray-800 mb-4">
-//         Offline Data Table (Unsync)
-//       </h2>
-//       {/* Date Filter */}
-//       <div className="flex flex-col sm:flex-row sm:justify-center sm:items-center gap-2 sm:gap-4 mb-6 w-full text-center">
-//         {/* Start Date Input */}
-//         <input
-//           type="date"
-//           value={startDate}
-//           onChange={handleStartDateChange}
-//           className="border p-2 rounded w-full sm:w-auto focus:ring-2 focus:ring-blue-500"
-//         />
-//         {/* End Date Input */}
-//         <input
-//           type="date"
-//           value={endDate}
-//           onChange={handleEndDateChange}
-//           className="border p-2 rounded w-full sm:w-auto focus:ring-2 focus:ring-blue-500"
-//         />
-//         {/* Reset Button */}
-//         <button
-//           onClick={() => {
-//             setStartDate("");
-//             setEndDate("");
-//           }}
-//           className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded shadow-md transition w-full sm:w-auto"
-//         >
-//           Reset Filter
-//         </button>
-//       </div>
-//       {filteredData.length === 0 ? (
-//         <p className="text-gray-600">No offline data available.</p>
-//       ) : (
-//         <div className="overflow-x-auto bg-white w-full max-w-4xl shadow-md ">
-//           <table className="w-full border border-gray-300 shadow-md rounded-lg">
-//             <thead>
-//               <tr className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-gray-700 text-left">
-//                 <th className="p-2 border text-center">
-//                   <input
-//                     type="checkbox"
-//                     onChange={handleSelectAll}
-//                     checked={
-//                       selectedItems.length === filteredData.length &&
-//                       filteredData.length > 0
-//                     }
-//                     className="w-4 h-4"
-//                   />
-//                 </th>
-//                 <th className="p-2 border">Scan Data</th>
-//                 <th className="p-2 border">Coupon Code</th>
-//                 <th className="p-2 border">Cash to Collect</th>
-//                 <th className="p-2 border">Dispenser Amount</th>
-//                 <th className="p-2 border">Extra Amount</th>
-//                 <th className="p-2 border">Status</th>
-//               </tr>
-//             </thead>
-//             <tbody>
-//               {filteredData.map((item, index) => (
-//                 <tr key={index} className="border text-gray-800 bg-yellow-100">
-//                   <td className="p-2 border text-center">
-//                     <input
-//                       type="checkbox"
-//                       checked={selectedItems.includes(index)}
-//                       onChange={() => handleSelect(index)}
-//                       className="w-4 h-4"
-//                     />
-//                   </td>
-//                   <td className="p-2 border">{item.scanData || "N/A"}</td>
-//                   <td className="p-2 border">{item.couponCode || "N/A"}</td>
-//                   <td className="p-2 border">
-//                     {item.cashToBeCollected || "N/A"}
-//                   </td>
-//                   <td className="p-2 border">
-//                     {item.dispenserAmount || "N/A"}
-//                   </td>
-//                   <td className="p-2 border">{item.extraAmount || "N/A"}</td>
-//                   <td className="p-2 border text-red-500 font-bold">
-//                     {item.status}
-//                   </td>
-//                 </tr>
-//               ))}
-//             </tbody>
-//           </table>
-//         </div>
-//       )}
-//       {filteredData.length > 0 && (
-//         <div className="flex gap-4 mt-4">
-//           <button
-//             onClick={handleSyncSelected}
-//             className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300"
-//           >
-//             Sync Selected
-//           </button>
-//           <button
-//             onClick={handleSyncAll}
-//             className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300"
-//           >
-//             Sync All
-//           </button>
-//         </div>
-//       )}
-//     </div>
-//   );
-// }
-// export default OfflineDataTable;
 __turbopack_esm__({
     "default": (()=>__TURBOPACK__default__export__)
 });
@@ -978,6 +769,9 @@ function OfflineDataTable() {
         setFilteredData(newUnsyncedData);
         setSelectedItems([]);
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$toastify$2f$dist$2f$index$2e$mjs__$5b$client$5d$__$28$ecmascript$29$__["toast"].success("Selected data has been synced successfully!");
+        setTimeout(()=>{
+            window.location.href = "/";
+        }, 3000);
     };
     const handleSyncAll = ()=>{
         if (offlineData.length === 0) {
@@ -998,7 +792,12 @@ function OfflineDataTable() {
         setOfflineData([]);
         setFilteredData([]);
         setSelectedItems([]);
+        // Show success toast
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$toastify$2f$dist$2f$index$2e$mjs__$5b$client$5d$__$28$ecmascript$29$__["toast"].success("All offline data has been synced successfully!");
+        // Redirect to home ('/') after 3 seconds
+        setTimeout(()=>{
+            window.location.href = "/";
+        }, 3000);
     };
     // Reset filter by clearing date inputs
     const handleResetFilter = ()=>{
@@ -1052,13 +851,13 @@ function OfflineDataTable() {
                                 children: "(Unsync)"
                             }, void 0, false, {
                                 fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                lineNumber: 382,
+                                lineNumber: 157,
                                 columnNumber: 30
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                        lineNumber: 381,
+                        lineNumber: 156,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1072,7 +871,7 @@ function OfflineDataTable() {
                                         children: "Start Date"
                                     }, void 0, false, {
                                         fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                        lineNumber: 389,
+                                        lineNumber: 164,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -1082,13 +881,13 @@ function OfflineDataTable() {
                                         className: "border p-2 rounded w-full sm:w-auto focus:ring-2 focus:ring-blue-500"
                                     }, void 0, false, {
                                         fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                        lineNumber: 390,
+                                        lineNumber: 165,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                lineNumber: 388,
+                                lineNumber: 163,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1099,7 +898,7 @@ function OfflineDataTable() {
                                         children: "End Date"
                                     }, void 0, false, {
                                         fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                        lineNumber: 400,
+                                        lineNumber: 175,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -1109,13 +908,13 @@ function OfflineDataTable() {
                                         className: "border p-2 rounded w-full sm:w-auto focus:ring-2 focus:ring-blue-500"
                                     }, void 0, false, {
                                         fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                        lineNumber: 401,
+                                        lineNumber: 176,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                lineNumber: 399,
+                                lineNumber: 174,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1124,7 +923,7 @@ function OfflineDataTable() {
                                 children: "Filter"
                             }, void 0, false, {
                                 fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                lineNumber: 410,
+                                lineNumber: 185,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1133,13 +932,13 @@ function OfflineDataTable() {
                                 children: "Reset Filter"
                             }, void 0, false, {
                                 fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                lineNumber: 418,
+                                lineNumber: 193,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                        lineNumber: 386,
+                        lineNumber: 161,
                         columnNumber: 9
                     }, this),
                     filteredData.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1147,7 +946,7 @@ function OfflineDataTable() {
                         children: "No offline data available."
                     }, void 0, false, {
                         fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                        lineNumber: 427,
+                        lineNumber: 202,
                         columnNumber: 11
                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "overflow-x-auto  w-full max-w-4xl bg-white shadow-md p-4",
@@ -1167,12 +966,12 @@ function OfflineDataTable() {
                                                     className: "w-4 h-4"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                                    lineNumber: 434,
+                                                    lineNumber: 209,
                                                     columnNumber: 21
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                                lineNumber: 433,
+                                                lineNumber: 208,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -1180,7 +979,7 @@ function OfflineDataTable() {
                                                 children: "Scan Data"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                                lineNumber: 444,
+                                                lineNumber: 219,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -1188,7 +987,7 @@ function OfflineDataTable() {
                                                 children: "Coupon Code"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                                lineNumber: 445,
+                                                lineNumber: 220,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -1196,7 +995,7 @@ function OfflineDataTable() {
                                                 children: "Cash to Collect"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                                lineNumber: 446,
+                                                lineNumber: 221,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -1204,7 +1003,7 @@ function OfflineDataTable() {
                                                 children: "Dispenser Amount"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                                lineNumber: 447,
+                                                lineNumber: 222,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -1212,7 +1011,7 @@ function OfflineDataTable() {
                                                 children: "Extra Amount"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                                lineNumber: 448,
+                                                lineNumber: 223,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -1220,18 +1019,18 @@ function OfflineDataTable() {
                                                 children: "Status"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                                lineNumber: 449,
+                                                lineNumber: 224,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                        lineNumber: 432,
+                                        lineNumber: 207,
                                         columnNumber: 17
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                    lineNumber: 431,
+                                    lineNumber: 206,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tbody", {
@@ -1247,12 +1046,12 @@ function OfflineDataTable() {
                                                         className: "w-4 h-4"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                                        lineNumber: 459,
+                                                        lineNumber: 234,
                                                         columnNumber: 23
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                                    lineNumber: 458,
+                                                    lineNumber: 233,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -1260,7 +1059,7 @@ function OfflineDataTable() {
                                                     children: item.scanData || "N/A"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                                    lineNumber: 466,
+                                                    lineNumber: 241,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -1268,7 +1067,7 @@ function OfflineDataTable() {
                                                     children: item.couponCode || "N/A"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                                    lineNumber: 467,
+                                                    lineNumber: 242,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -1276,7 +1075,7 @@ function OfflineDataTable() {
                                                     children: item.cashToBeCollected || "N/A"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                                    lineNumber: 468,
+                                                    lineNumber: 243,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -1284,7 +1083,7 @@ function OfflineDataTable() {
                                                     children: item.dispenserAmount || "N/A"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                                    lineNumber: 471,
+                                                    lineNumber: 246,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -1292,7 +1091,7 @@ function OfflineDataTable() {
                                                     children: item.extraAmount || "N/A"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                                    lineNumber: 474,
+                                                    lineNumber: 249,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -1300,29 +1099,29 @@ function OfflineDataTable() {
                                                     children: item.status
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                                    lineNumber: 475,
+                                                    lineNumber: 250,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, index, true, {
                                             fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                            lineNumber: 454,
+                                            lineNumber: 229,
                                             columnNumber: 19
                                         }, this))
                                 }, void 0, false, {
                                     fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                    lineNumber: 452,
+                                    lineNumber: 227,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                            lineNumber: 430,
+                            lineNumber: 205,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                        lineNumber: 429,
+                        lineNumber: 204,
                         columnNumber: 11
                     }, this),
                     filteredData.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1334,7 +1133,7 @@ function OfflineDataTable() {
                                 children: "Sync Selected"
                             }, void 0, false, {
                                 fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                lineNumber: 487,
+                                lineNumber: 262,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1343,41 +1142,41 @@ function OfflineDataTable() {
                                 children: "Sync All"
                             }, void 0, false, {
                                 fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                lineNumber: 493,
+                                lineNumber: 268,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                        lineNumber: 486,
+                        lineNumber: 261,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                lineNumber: 380,
+                lineNumber: 155,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$BottomNavbar$2f$BottomNavbar$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                     fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                    lineNumber: 503,
+                    lineNumber: 278,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                lineNumber: 502,
+                lineNumber: 277,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$toastify$2f$dist$2f$index$2e$mjs__$5b$client$5d$__$28$ecmascript$29$__["ToastContainer"], {}, void 0, false, {
                     fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                    lineNumber: 506,
+                    lineNumber: 281,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                lineNumber: 505,
+                lineNumber: 280,
                 columnNumber: 7
             }, this)
         ]
