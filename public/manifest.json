@@ -1,22 +1,27 @@
 {
-    "name": "My GoGas Web App",
-    "short_name": "PWA",
-    "description": "A Next.js Progressive Web App",
-    "start_url": "/",
-    "display": "standalone",
-    "background_color": "#ffffff",
-    "theme_color": "#000000",
-    "icons": [
-      {
-        "src": "https://upload.wikimedia.org/wikipedia/commons/b/bc/Hsm-icon-192x192.png",
-        "sizes": "192x192",
-        "type": "image/png"
-      },
-      {
-        "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-0Jz2JA8JvSQepqzbF2HEGb62-Qec_BcJug&s",
-        "sizes": "512x512",
-        "type": "image/png"
-      }
-    ]
-  }
-  
+  "name": "GoGas",
+  "short_name": "GoGas",
+  "theme_color": "#00ff00",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "orientation": "any",
+  "scope": "/",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "icons/logo-gagas-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "icons/logo-gagas-256.png",
+      "type": "image/png",
+      "sizes": "256x256"
+    },
+    {
+      "src": "icons/logo-gagas-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}
