@@ -558,56 +558,17 @@ __turbopack_esm__({
     "default": (()=>App)
 });
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/react/jsx-dev-runtime.js [client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/react/index.js [client] (ecmascript)");
-;
-var _s = __turbopack_refresh__.signature();
 ;
 ;
 function App({ Component, pageProps }) {
-    _s();
-    const [isOnline, setIsOnline] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useState"])(true);
-    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useEffect"])({
-        "App.useEffect": ()=>{
-            const updateOnlineStatus = {
-                "App.useEffect.updateOnlineStatus": ()=>{
-                    setIsOnline(navigator.onLine);
-                }
-            }["App.useEffect.updateOnlineStatus"];
-            window.addEventListener("online", updateOnlineStatus);
-            window.addEventListener("offline", updateOnlineStatus);
-            return ({
-                "App.useEffect": ()=>{
-                    window.removeEventListener("online", updateOnlineStatus);
-                    window.removeEventListener("offline", updateOnlineStatus);
-                }
-            })["App.useEffect"];
-        }
-    }["App.useEffect"], []);
-    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        children: [
-            !isOnline && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "bg-red-600 text-white text-center p-2",
-                children: "You are offline. Some features may be unavailable."
-            }, void 0, false, {
-                fileName: "[project]/src/pages/_app.js",
-                lineNumber: 23,
-                columnNumber: 9
-            }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(Component, {
-                ...pageProps
-            }, void 0, false, {
-                fileName: "[project]/src/pages/_app.js",
-                lineNumber: 27,
-                columnNumber: 7
-            }, this)
-        ]
-    }, void 0, true, {
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(Component, {
+        ...pageProps
+    }, void 0, false, {
         fileName: "[project]/src/pages/_app.js",
-        lineNumber: 21,
-        columnNumber: 5
+        lineNumber: 4,
+        columnNumber: 10
     }, this);
 }
-_s(App, "mRBquyBAMh60D2Q5WI/A8/L/7j4=");
 _c = App;
 var _c;
 __turbopack_refresh__.register(_c, "App");

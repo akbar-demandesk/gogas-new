@@ -10,7 +10,7 @@
     "static/chunks/node_modules_react-icons_fa_index_mjs_bad01e._.js",
     "static/chunks/node_modules_react-icons_lib_75a63d._.js",
     "static/chunks/node_modules_3e3538._.js",
-    "static/chunks/[root of the server]__731db2._.js",
+    "static/chunks/[root of the server]__01e33c._.js",
     "static/chunks/node_modules_react-toastify_dist_ReactToastify_904beb.css"
   ],
   "source": "entry"

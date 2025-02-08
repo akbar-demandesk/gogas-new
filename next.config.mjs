@@ -1,15 +1,26 @@
 // Use ESM `import` instead of `require`
-import nextPWA from "next-pwa";
+import withPwa from "next-pwa";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // reactStrictMode: true,
+  // ...nextPWA({
+  //   dest: "public",
+  //   register: true,
+  //   skipWaiting: true,
+  //   disable: process.env.NODE_ENV === "development",
+  // }),
+  distDir: "build",
   reactStrictMode: true,
-  ...nextPWA({
-    dest: "public",
-    register: true,
-    skipWaiting: true,
-    disable: process.env.NODE_ENV === "development",
-  }),
+  swcMinify: true,
+  compiler: {
+    removeConsole: process.env.NODE_ENV === "development",
+  },
 };
 
-export default nextConfig;
+export default withPwa({
+  dest: "public",
+  disable: process.env.NODE_ENV === "development",
+  register: true,
+  skipWaiting: true,
+})(nextConfig);

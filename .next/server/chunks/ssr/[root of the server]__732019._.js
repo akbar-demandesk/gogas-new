@@ -20,40 +20,12 @@ var __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$run
 ;
 ;
 function App({ Component, pageProps }) {
-    const [isOnline, setIsOnline] = useState(true);
-    useEffect(()=>{
-        const updateOnlineStatus = ()=>{
-            setIsOnline(navigator.onLine);
-        };
-        window.addEventListener("online", updateOnlineStatus);
-        window.addEventListener("offline", updateOnlineStatus);
-        return ()=>{
-            window.removeEventListener("online", updateOnlineStatus);
-            window.removeEventListener("offline", updateOnlineStatus);
-        };
-    }, []);
-    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
-        children: [
-            !isOnline && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
-                className: "bg-red-600 text-white text-center p-2",
-                children: "You are offline. Some features may be unavailable."
-            }, void 0, false, {
-                fileName: "[project]/src/pages/_app.js",
-                lineNumber: 22,
-                columnNumber: 9
-            }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(Component, {
-                ...pageProps
-            }, void 0, false, {
-                fileName: "[project]/src/pages/_app.js",
-                lineNumber: 26,
-                columnNumber: 7
-            }, this)
-        ]
-    }, void 0, true, {
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(Component, {
+        ...pageProps
+    }, void 0, false, {
         fileName: "[project]/src/pages/_app.js",
-        lineNumber: 20,
-        columnNumber: 5
+        lineNumber: 4,
+        columnNumber: 10
     }, this);
 }
 }}),

@@ -281,28 +281,9 @@ function GoGasProcess2() {
 
           {step === 1 && (
             <>
-              <div className="mb-6">
-                <label className="block text-black-700 text-md font-medium mb-2">
-                  1. Scan QR
-                </label>
-                <div className="flex justify-center mb-4">
-                  <button
-                    onClick={generateQRCode}
-                    className="flex items-center justify-center bg-yellow-400 hover:bg-yellow-500 text-white font-bold py-2 px-4 rounded-lg transition duration-300 w-24"
-                  >
-                    <FaQrcode className="mr-2" /> Scan
-                  </button>
-                </div>
-                {mounted && qrCode && (
-                  <div className="flex justify-center mb-4">
-                    <QRCodeCanvas value={qrCode} size={128} />
-                  </div>
-                )}
-              </div>
-
               <div className="mb-4">
                 <label className="block text-black-700 text-md font-medium mb-2">
-                  2. Coupon code <span className="text-red-500">*</span>
+                  1. Coupon code <span className="text-red-500">*</span>
                 </label>
 
                 <div className="relative">
@@ -318,6 +299,24 @@ function GoGasProcess2() {
                 </div>
               </div>
 
+              <div className="mb-6">
+                <label className="block text-black-700 text-md font-medium mb-2">
+                  2. Scan QR
+                </label>
+                <div className="flex justify-center mb-4">
+                  <button
+                    onClick={generateQRCode}
+                    className="flex items-center justify-center bg-yellow-400 hover:bg-yellow-500 text-white font-bold py-2 px-4 rounded-lg transition duration-300 w-24"
+                  >
+                    <FaQrcode className="mr-2" /> Scan
+                  </button>
+                </div>
+                {mounted && qrCode && (
+                  <div className="flex justify-center mb-4">
+                    <QRCodeCanvas value={qrCode} size={128} />
+                  </div>
+                )}
+              </div>
               <div className="mb-4">
                 <label className="block text-black-700 text-md font-medium mb-2">
                   3. Cash To Be Collected{" "}

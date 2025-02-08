@@ -720,8 +720,10 @@ function OfflineDataTable() {
     const [filteredData, setFilteredData] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useState"])([]);
     const [startDate, setStartDate] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useState"])("");
     const [endDate, setEndDate] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useState"])("");
+    const [loadind, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useState"])(false);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "OfflineDataTable.useEffect": ()=>{
+            setLoading(true);
             // Get unsynchronized data from localStorage
             const storedData = JSON.parse(localStorage.getItem("gogasForm") || "[]");
             const unsyncData = storedData.filter({
@@ -748,30 +750,57 @@ function OfflineDataTable() {
         }
     };
     // Sync selected rows (update offlineData in state and localStorage accordingly)
+    // const handleSyncSelected = () => {
+    //   if (selectedItems.length === 0) {
+    //     toast.warn("Please select at least one entry to sync.");
+    //     return;
+    //   }
+    //   // Update the status of selected items
+    //   const updatedData = offlineData.map((item, index) =>
+    //     selectedItems.includes(index) ? { ...item, status: "sync" } : item
+    //   );
+    //   // Update localStorage
+    //   const allData = JSON.parse(localStorage.getItem("gogasForm") || "[]").map(
+    //     (item) =>
+    //       selectedItems.some(
+    //         (idx) => offlineData[idx].couponCode === item.couponCode
+    //       )
+    //         ? { ...item, status: "sync" }
+    //         : item
+    //   );
+    //   localStorage.setItem("gogasForm", JSON.stringify(allData));
+    //   const newUnsyncedData = updatedData.filter(
+    //     (item) => item.status === "unsync"
+    //   );
+    //   setOfflineData(newUnsyncedData);
+    //   setFilteredData(newUnsyncedData);
+    //   setSelectedItems([]);
+    //   toast.success("Selected data has been synced successfully!");
+    //   setTimeout(() => {
+    //     window.location.href = "/";
+    //   }, 3000);
+    // };
     const handleSyncSelected = ()=>{
         if (selectedItems.length === 0) {
             __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$toastify$2f$dist$2f$index$2e$mjs__$5b$client$5d$__$28$ecmascript$29$__["toast"].warn("Please select at least one entry to sync.");
             return;
         }
-        // Update the status of selected items
+        // Update the status of selected items to "sync"
         const updatedData = offlineData.map((item, index)=>selectedItems.includes(index) ? {
                 ...item,
                 status: "sync"
             } : item);
-        // Update localStorage
+        // Update localStorage for only selected items
         const allData = JSON.parse(localStorage.getItem("gogasForm") || "[]").map((item)=>selectedItems.some((idx)=>offlineData[idx].couponCode === item.couponCode) ? {
                 ...item,
                 status: "sync"
             } : item);
         localStorage.setItem("gogasForm", JSON.stringify(allData));
-        const newUnsyncedData = updatedData.filter((item)=>item.status === "unsync");
-        setOfflineData(newUnsyncedData);
-        setFilteredData(newUnsyncedData);
+        // Update state and reset selected items
+        setOfflineData(updatedData);
+        setFilteredData(updatedData);
         setSelectedItems([]);
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$toastify$2f$dist$2f$index$2e$mjs__$5b$client$5d$__$28$ecmascript$29$__["toast"].success("Selected data has been synced successfully!");
-        setTimeout(()=>{
-            window.location.href = "/";
-        }, 3000);
     };
     const handleSyncAll = ()=>{
         if (offlineData.length === 0) {
@@ -789,12 +818,23 @@ function OfflineDataTable() {
                 status: "sync"
             }));
         localStorage.setItem("gogasForm", JSON.stringify(allData));
-        setOfflineData([]);
-        setFilteredData([]);
-        setSelectedItems([]);
+        // Update state without clearing the data (since items will be removed only on "Back to Home")
+        setOfflineData(updatedData);
+        setFilteredData(updatedData);
         // Show success toast
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$toastify$2f$dist$2f$index$2e$mjs__$5b$client$5d$__$28$ecmascript$29$__["toast"].success("All offline data has been synced successfully!");
-        // Redirect to home ('/') after 3 seconds
+    };
+    const handleBackToHome = ()=>{
+        // Remove only synced and selected items from state and localStorage
+        const remainingData = offlineData.filter((item, index)=>!(selectedItems.includes(index) && item.status === "sync"));
+        const allData = JSON.parse(localStorage.getItem("gogasForm") || "[]").filter((item)=>!selectedItems.some((idx)=>offlineData[idx].couponCode === item.couponCode && offlineData[idx].status === "sync"));
+        localStorage.setItem("gogasForm", JSON.stringify(allData));
+        // Update state and reset selected items
+        setOfflineData(remainingData);
+        setFilteredData(remainingData);
+        setSelectedItems([]);
+        // Redirect to home
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$toastify$2f$dist$2f$index$2e$mjs__$5b$client$5d$__$28$ecmascript$29$__["toast"].success("Returning to home...");
         setTimeout(()=>{
             window.location.href = "/";
         }, 3000);
@@ -838,41 +878,42 @@ function OfflineDataTable() {
         setFilteredData(filtered);
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["Fragment"], {
-        children: [
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "flex flex-col items-center min-h-screen bg-[#FFE6A9] p-6 overflow-auto ",
-                children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                        className: "text-2xl font-bold text-gray-800 mb-4",
-                        children: [
-                            "Offline Data Table ",
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                className: "text-purple-800",
-                                children: "(Unsync)"
-                            }, void 0, false, {
-                                fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                lineNumber: 157,
-                                columnNumber: 30
-                            }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                        lineNumber: 156,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "flex flex-col sm:flex-row sm:justify-center sm:items-center gap-4 sm:gap-6 mb-6 w-full text-center bg-white shadow-md p-4 rounded-lg",
+        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "min-h-screen flex flex-col items-center bg-[#FFE6A9] p-6",
+            children: [
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+                    className: "text-2xl font-bold text-gray-800 mb-6",
+                    children: [
+                        "Offline Data Table ",
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                            className: "text-purple-800",
+                            children: "(Unsync)"
+                        }, void 0, false, {
+                            fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
+                            lineNumber: 344,
+                            columnNumber: 30
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
+                    lineNumber: 343,
+                    columnNumber: 9
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "w-full max-w-4xl bg-white shadow-md p-6 rounded-lg mb-6",
+                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "flex flex-col sm:flex-wrap md:flex-row gap-4 items-center justify-between",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex flex-col items-start gap-2 w-full sm:w-auto",
+                                className: "flex flex-col sm:flex-row sm:items-center gap-2",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
                                         className: "text-black font-semibold",
                                         children: "Start Date"
                                     }, void 0, false, {
                                         fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                        lineNumber: 164,
-                                        columnNumber: 13
+                                        lineNumber: 352,
+                                        columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
                                         type: "date",
@@ -881,25 +922,25 @@ function OfflineDataTable() {
                                         className: "border p-2 rounded w-full sm:w-auto focus:ring-2 focus:ring-blue-500"
                                     }, void 0, false, {
                                         fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                        lineNumber: 165,
-                                        columnNumber: 13
+                                        lineNumber: 353,
+                                        columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                lineNumber: 163,
-                                columnNumber: 11
+                                lineNumber: 351,
+                                columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex flex-col items-start gap-2 w-full sm:w-auto",
+                                className: "flex flex-col sm:flex-row sm:items-center gap-2",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
                                         className: "text-black font-semibold",
                                         children: "End Date"
                                     }, void 0, false, {
                                         fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                        lineNumber: 175,
-                                        columnNumber: 13
+                                        lineNumber: 363,
+                                        columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
                                         type: "date",
@@ -908,82 +949,107 @@ function OfflineDataTable() {
                                         className: "border p-2 rounded w-full sm:w-auto focus:ring-2 focus:ring-blue-500"
                                     }, void 0, false, {
                                         fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                        lineNumber: 176,
-                                        columnNumber: 13
+                                        lineNumber: 364,
+                                        columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                lineNumber: 174,
-                                columnNumber: 11
+                                lineNumber: 362,
+                                columnNumber: 13
                             }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                onClick: handleFilterData,
-                                className: "bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded shadow-md transition w-full sm:w-auto",
-                                children: "Filter"
-                            }, void 0, false, {
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "flex flex-row gap-4",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                        onClick: handleFilterData,
+                                        className: "bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded shadow-md transition",
+                                        children: "Filter"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
+                                        lineNumber: 374,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                        onClick: handleResetFilter,
+                                        className: "bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded shadow-md transition",
+                                        children: "Reset Filter"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
+                                        lineNumber: 380,
+                                        columnNumber: 15
+                                    }, this)
+                                ]
+                            }, void 0, true, {
                                 fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                lineNumber: 185,
-                                columnNumber: 11
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                onClick: handleResetFilter,
-                                className: "bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded shadow-md transition w-full sm:w-auto",
-                                children: "Reset Filter"
-                            }, void 0, false, {
-                                fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                lineNumber: 193,
-                                columnNumber: 11
+                                lineNumber: 373,
+                                columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                        lineNumber: 161,
-                        columnNumber: 9
-                    }, this),
-                    filteredData.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                        className: "text-gray-600",
-                        children: "No offline data available."
-                    }, void 0, false, {
-                        fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                        lineNumber: 202,
+                        lineNumber: 349,
                         columnNumber: 11
-                    }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "overflow-x-auto  w-full max-w-4xl bg-white shadow-md p-4 rounded-lg mb-5",
-                        children: [
-                            filteredData.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex  gap-4 mt-4 justify-end mb-5",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                        onClick: handleSyncSelected,
-                                        className: "bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 w-full sm:w-auto",
-                                        children: "Sync Selected"
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                        lineNumber: 207,
-                                        columnNumber: 17
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                        onClick: handleSyncAll,
-                                        className: "bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 w-full sm:w-auto",
-                                        children: "Sync All"
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                        lineNumber: 213,
-                                        columnNumber: 17
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                lineNumber: 206,
-                                columnNumber: 15
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("table", {
-                                className: "w-full border border-gray-300 shadow-md rounded-lg",
+                    }, this)
+                }, void 0, false, {
+                    fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
+                    lineNumber: 348,
+                    columnNumber: 9
+                }, this),
+                filteredData.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                    className: "text-gray-600",
+                    children: "No offline data available."
+                }, void 0, false, {
+                    fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
+                    lineNumber: 392,
+                    columnNumber: 11
+                }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "w-full max-w-4xl bg-white shadow-md p-6 rounded-lg mb-5",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "flex flex-wrap gap-4 justify-end mb-4",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                    onClick: handleSyncSelected,
+                                    className: "bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 w-full sm:w-auto",
+                                    children: "Sync Selected"
+                                }, void 0, false, {
+                                    fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
+                                    lineNumber: 396,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                    onClick: handleSyncAll,
+                                    className: "bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 w-full sm:w-auto",
+                                    children: "Sync All"
+                                }, void 0, false, {
+                                    fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
+                                    lineNumber: 402,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                    onClick: handleBackToHome,
+                                    className: "bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 w-full sm:w-auto",
+                                    children: "Back to Home"
+                                }, void 0, false, {
+                                    fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
+                                    lineNumber: 408,
+                                    columnNumber: 15
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
+                            lineNumber: 395,
+                            columnNumber: 13
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "overflow-x-auto w-full",
+                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("table", {
+                                className: "w-full border border-gray-300 rounded-lg overflow-hidden",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("thead", {
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tr", {
-                                            className: "bg-gradient-to-r from-yellow-400 to-yellow-500 text-gray-700 text-left",
+                                            className: "bg-gray-200 text-gray-700 text-left",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
                                                     className: "p-2 border text-center",
@@ -994,76 +1060,76 @@ function OfflineDataTable() {
                                                         className: "w-4 h-4"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                                        lineNumber: 225,
-                                                        columnNumber: 21
+                                                        lineNumber: 422,
+                                                        columnNumber: 23
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                                    lineNumber: 224,
-                                                    columnNumber: 19
+                                                    lineNumber: 421,
+                                                    columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
                                                     className: "p-2 border",
                                                     children: "Scan Data"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                                    lineNumber: 235,
-                                                    columnNumber: 19
+                                                    lineNumber: 432,
+                                                    columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
                                                     className: "p-2 border",
                                                     children: "Coupon Code"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                                    lineNumber: 236,
-                                                    columnNumber: 19
+                                                    lineNumber: 433,
+                                                    columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
                                                     className: "p-2 border",
                                                     children: "Cash to Collect"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                                    lineNumber: 237,
-                                                    columnNumber: 19
+                                                    lineNumber: 434,
+                                                    columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
                                                     className: "p-2 border",
                                                     children: "Dispenser Amount"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                                    lineNumber: 238,
-                                                    columnNumber: 19
+                                                    lineNumber: 435,
+                                                    columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
                                                     className: "p-2 border",
                                                     children: "Extra Amount"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                                    lineNumber: 239,
-                                                    columnNumber: 19
+                                                    lineNumber: 436,
+                                                    columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
                                                     className: "p-2 border",
                                                     children: "Status"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                                    lineNumber: 240,
-                                                    columnNumber: 19
+                                                    lineNumber: 437,
+                                                    columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                            lineNumber: 223,
-                                            columnNumber: 17
+                                            lineNumber: 420,
+                                            columnNumber: 19
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                        lineNumber: 222,
-                                        columnNumber: 15
+                                        lineNumber: 419,
+                                        columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tbody", {
                                         children: filteredData.map((item, index)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tr", {
-                                                className: "border text-gray-800 bg-yellow-100",
+                                                className: "border text-gray-800 bg-white hover:bg-gray-100",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
                                                         className: "p-2 border text-center",
@@ -1074,118 +1140,123 @@ function OfflineDataTable() {
                                                             className: "w-4 h-4"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                                            lineNumber: 250,
-                                                            columnNumber: 23
+                                                            lineNumber: 447,
+                                                            columnNumber: 25
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                                        lineNumber: 249,
-                                                        columnNumber: 21
+                                                        lineNumber: 446,
+                                                        columnNumber: 23
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
                                                         className: "p-2 border",
                                                         children: item.scanData || "N/A"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                                        lineNumber: 257,
-                                                        columnNumber: 21
+                                                        lineNumber: 454,
+                                                        columnNumber: 23
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
                                                         className: "p-2 border",
                                                         children: item.couponCode || "N/A"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                                        lineNumber: 258,
-                                                        columnNumber: 21
+                                                        lineNumber: 455,
+                                                        columnNumber: 23
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
                                                         className: "p-2 border",
                                                         children: item.cashToBeCollected || "N/A"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                                        lineNumber: 259,
-                                                        columnNumber: 21
+                                                        lineNumber: 456,
+                                                        columnNumber: 23
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
                                                         className: "p-2 border",
                                                         children: item.dispenserAmount || "N/A"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                                        lineNumber: 262,
-                                                        columnNumber: 21
+                                                        lineNumber: 459,
+                                                        columnNumber: 23
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
                                                         className: "p-2 border",
                                                         children: item.extraAmount || "N/A"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                                        lineNumber: 265,
-                                                        columnNumber: 21
+                                                        lineNumber: 462,
+                                                        columnNumber: 23
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
-                                                        className: "p-2 border text-red-500 font-bold",
-                                                        children: item.status
+                                                        className: "p-2 border",
+                                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                            className: `px-2 py-1 rounded ${item.status === "unsync" ? "bg-red-100 text-red-500 font-bold" : "bg-green-100 text-green-500 font-bold"}`,
+                                                            children: item.status
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
+                                                            lineNumber: 466,
+                                                            columnNumber: 25
+                                                        }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                                        lineNumber: 266,
-                                                        columnNumber: 21
+                                                        lineNumber: 465,
+                                                        columnNumber: 23
                                                     }, this)
                                                 ]
                                             }, index, true, {
                                                 fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                                lineNumber: 245,
-                                                columnNumber: 19
+                                                lineNumber: 442,
+                                                columnNumber: 21
                                             }, this))
                                     }, void 0, false, {
                                         fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                        lineNumber: 243,
-                                        columnNumber: 15
+                                        lineNumber: 440,
+                                        columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                                lineNumber: 221,
-                                columnNumber: 13
+                                lineNumber: 418,
+                                columnNumber: 15
                             }, this)
-                        ]
-                    }, void 0, true, {
+                        }, void 0, false, {
+                            fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
+                            lineNumber: 417,
+                            columnNumber: 13
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
+                    lineNumber: 394,
+                    columnNumber: 11
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "mt-10",
+                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$BottomNavbar$2f$BottomNavbar$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                         fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                        lineNumber: 204,
+                        lineNumber: 486,
                         columnNumber: 11
                     }, this)
-                ]
-            }, void 0, true, {
-                fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                lineNumber: 155,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "md:mt-15",
-                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$BottomNavbar$2f$BottomNavbar$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
+                }, void 0, false, {
                     fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                    lineNumber: 278,
+                    lineNumber: 485,
+                    columnNumber: 9
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$toastify$2f$dist$2f$index$2e$mjs__$5b$client$5d$__$28$ecmascript$29$__["ToastContainer"], {}, void 0, false, {
+                    fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
+                    lineNumber: 490,
                     columnNumber: 9
                 }, this)
-            }, void 0, false, {
-                fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                lineNumber: 277,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$toastify$2f$dist$2f$index$2e$mjs__$5b$client$5d$__$28$ecmascript$29$__["ToastContainer"], {}, void 0, false, {
-                    fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                    lineNumber: 282,
-                    columnNumber: 9
-                }, this)
-            }, void 0, false, {
-                fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
-                lineNumber: 281,
-                columnNumber: 7
-            }, this)
-        ]
-    }, void 0, true);
+            ]
+        }, void 0, true, {
+            fileName: "[project]/src/pages/offlinedata/offlinedatatable.js",
+            lineNumber: 341,
+            columnNumber: 7
+        }, this)
+    }, void 0, false);
 }
-_s(OfflineDataTable, "nRf7XXsRb1qofSMt/TAPkRdmPEw=");
+_s(OfflineDataTable, "lVglB7pYpKlmfHMrx0vHTxDCD38=");
 _c = OfflineDataTable;
 const __TURBOPACK__default__export__ = OfflineDataTable;
 var _c;
