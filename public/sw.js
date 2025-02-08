@@ -1,1 +1,46 @@
-if(!self.define){let e,s={};const a=(a,n)=>(a=new URL(a+".js",n).href,s[a]||new Promise((s=>{if("document"in self){const e=document.createElement("script");e.src=a,e.onload=s,document.head.appendChild(e)}else e=a,importScripts(a),s()})).then((()=>{let e=s[a];if(!e)throw new Error(`Module ${a} didn’t register its module`);return e})));self.define=(n,c)=>{const i=e||("document"in self?document.currentScript.src:"")||location.href;if(s[i])return;let t={};const o=e=>a(e,i),r={module:{uri:i},exports:t,require:o};s[i]=Promise.all(n.map((e=>r[e]||o(e)))).then((e=>(c(...e),t)))}}define(["./workbox-4754cb34"],(function(e){"use strict";importScripts(),self.skipWaiting(),e.clientsClaim(),e.precacheAndRoute([{url:"/_next/dynamic-css-manifest.json",revision:"d751713988987e9331980363e24189ce"},{url:"/_next/static/chunks/102-03efa4b9939cb26b.js",revision:"03efa4b9939cb26b"},{url:"/_next/static/chunks/390-743568c26b01896a.js",revision:"743568c26b01896a"},{url:"/_next/static/chunks/484.da50829333201e55.js",revision:"da50829333201e55"},{url:"/_next/static/chunks/68c0a17d-d2b9c7078cf36223.js",revision:"d2b9c7078cf36223"},{url:"/_next/static/chunks/709.e04b3301a1eba8ef.js",revision:"e04b3301a1eba8ef"},{url:"/_next/static/chunks/cb355538-07cc54b39a8d4541.js",revision:"07cc54b39a8d4541"},{url:"/_next/static/chunks/framework-a4ddb9b21624b39b.js",revision:"a4ddb9b21624b39b"},{url:"/_next/static/chunks/main-2fc4eba9ea335b9b.js",revision:"2fc4eba9ea335b9b"},{url:"/_next/static/chunks/pages/_app-0bdaa2eb161291b1.js",revision:"0bdaa2eb161291b1"},{url:"/_next/static/chunks/pages/_error-83eac0d438baeb80.js",revision:"83eac0d438baeb80"},{url:"/_next/static/chunks/pages/dashboard/home-d78119e345eecae5.js",revision:"d78119e345eecae5"},{url:"/_next/static/chunks/pages/go-gas-form/GoGasForm-b3aa9436d94eb233.js",revision:"b3aa9436d94eb233"},{url:"/_next/static/chunks/pages/go-gas-form/GoGasForm2-8b10d9b02e7ba825.js",revision:"8b10d9b02e7ba825"},{url:"/_next/static/chunks/pages/index-18f795ec2d666846.js",revision:"18f795ec2d666846"},{url:"/_next/static/chunks/pages/offlinedata/offlinedatatable-aecb2decffac736d.js",revision:"aecb2decffac736d"},{url:"/_next/static/chunks/polyfills-42372ed130431b0a.js",revision:"846118c33b2c0e922d7b3a7676f81f6f"},{url:"/_next/static/chunks/webpack-a198c8a9021f6728.js",revision:"a198c8a9021f6728"},{url:"/_next/static/css/6baddcad697b2bae.css",revision:"6baddcad697b2bae"},{url:"/_next/static/css/e7eddfe4828c1690.css",revision:"e7eddfe4828c1690"},{url:"/_next/static/js6c1wXc1_NVLBun_D8_6/_buildManifest.js",revision:"826ab00140fb99ec55b066da64d838d9"},{url:"/_next/static/js6c1wXc1_NVLBun_D8_6/_ssgManifest.js",revision:"b6652df95db52feb4daf4eca35380933"},{url:"/assets/logo.png",revision:"b99066f02b4869510fdac67ba5f64346"},{url:"/favicon.ico",revision:"c30c7d42707a47a3f4591831641e50dc"},{url:"/file.svg",revision:"d09f95206c3fa0bb9bd9fefabfd0ea71"},{url:"/globe.svg",revision:"2aaafa6a49b6563925fe440891e32717"},{url:"/icons/logo-gagas-128.png",revision:"078717aa4c7dc1d862be1d5ba3581858"},{url:"/icons/logo-gagas-144.png",revision:"02f5e12e75bd2387a1ab2bacceffd8ee"},{url:"/icons/logo-gagas-152.png",revision:"450c650e975c2d9988f3ce6f9e3b6a41"},{url:"/icons/logo-gagas-16.png",revision:"4268cf92a8bd3f19445aab8aacd25a84"},{url:"/icons/logo-gagas-180.png",revision:"aa0fa2bb28d90ef50d69ef4cb277427a"},{url:"/icons/logo-gagas-192.png",revision:"31850d3ae50a706ddc3291477af176c5"},{url:"/icons/logo-gagas-256.png",revision:"1fcb6d7a1818139cf7aef0f27ba2e98b"},{url:"/icons/logo-gagas-48.png",revision:"9bcddc9a7b2988d4fd33f99413494d08"},{url:"/icons/logo-gagas-512.png",revision:"f9dc66bde4e9139fc608f91ceee3c173"},{url:"/icons/logo-gagas-64.png",revision:"0d85b6963ca3aabba0a0ba72ab7c8515"},{url:"/icons/logo-gagas-72.png",revision:"cd5c003f3f96697fe2e16f23636573c2"},{url:"/icons/logo-gagas-96.png",revision:"28a73aab89e135b4b311fa5fcdec63d5"},{url:"/manifest.json",revision:"7a7bfcd10c688f9385023942430b7c5a"},{url:"/next.svg",revision:"8e061864f388b47f33a1c3780831193e"},{url:"/vercel.svg",revision:"c0af2f507b369b085b35ef4bbe3bcf1e"},{url:"/window.svg",revision:"a2760511c65806022ad20adf74370ff3"}],{ignoreURLParametersMatching:[]}),e.cleanupOutdatedCaches(),e.registerRoute("/",new e.NetworkFirst({cacheName:"start-url",plugins:[{cacheWillUpdate:async({request:e,response:s,event:a,state:n})=>s&&"opaqueredirect"===s.type?new Response(s.body,{status:200,statusText:"OK",headers:s.headers}):s}]}),"GET"),e.registerRoute(/^https:\/\/fonts\.(?:gstatic)\.com\/.*/i,new e.CacheFirst({cacheName:"google-fonts-webfonts",plugins:[new e.ExpirationPlugin({maxEntries:4,maxAgeSeconds:31536e3})]}),"GET"),e.registerRoute(/^https:\/\/fonts\.(?:googleapis)\.com\/.*/i,new e.StaleWhileRevalidate({cacheName:"google-fonts-stylesheets",plugins:[new e.ExpirationPlugin({maxEntries:4,maxAgeSeconds:604800})]}),"GET"),e.registerRoute(/\.(?:eot|otf|ttc|ttf|woff|woff2|font.css)$/i,new e.StaleWhileRevalidate({cacheName:"static-font-assets",plugins:[new e.ExpirationPlugin({maxEntries:4,maxAgeSeconds:604800})]}),"GET"),e.registerRoute(/\.(?:jpg|jpeg|gif|png|svg|ico|webp)$/i,new e.StaleWhileRevalidate({cacheName:"static-image-assets",plugins:[new e.ExpirationPlugin({maxEntries:64,maxAgeSeconds:86400})]}),"GET"),e.registerRoute(/\/_next\/image\?url=.+$/i,new e.StaleWhileRevalidate({cacheName:"next-image",plugins:[new e.ExpirationPlugin({maxEntries:64,maxAgeSeconds:86400})]}),"GET"),e.registerRoute(/\.(?:mp3|wav|ogg)$/i,new e.CacheFirst({cacheName:"static-audio-assets",plugins:[new e.RangeRequestsPlugin,new e.ExpirationPlugin({maxEntries:32,maxAgeSeconds:86400})]}),"GET"),e.registerRoute(/\.(?:mp4)$/i,new e.CacheFirst({cacheName:"static-video-assets",plugins:[new e.RangeRequestsPlugin,new e.ExpirationPlugin({maxEntries:32,maxAgeSeconds:86400})]}),"GET"),e.registerRoute(/\.(?:js)$/i,new e.StaleWhileRevalidate({cacheName:"static-js-assets",plugins:[new e.ExpirationPlugin({maxEntries:32,maxAgeSeconds:86400})]}),"GET"),e.registerRoute(/\.(?:css|less)$/i,new e.StaleWhileRevalidate({cacheName:"static-style-assets",plugins:[new e.ExpirationPlugin({maxEntries:32,maxAgeSeconds:86400})]}),"GET"),e.registerRoute(/\/_next\/data\/.+\/.+\.json$/i,new e.StaleWhileRevalidate({cacheName:"next-data",plugins:[new e.ExpirationPlugin({maxEntries:32,maxAgeSeconds:86400})]}),"GET"),e.registerRoute(/\.(?:json|xml|csv)$/i,new e.NetworkFirst({cacheName:"static-data-assets",plugins:[new e.ExpirationPlugin({maxEntries:32,maxAgeSeconds:86400})]}),"GET"),e.registerRoute((({url:e})=>{if(!(self.origin===e.origin))return!1;const s=e.pathname;return!s.startsWith("/api/auth/")&&!!s.startsWith("/api/")}),new e.NetworkFirst({cacheName:"apis",networkTimeoutSeconds:10,plugins:[new e.ExpirationPlugin({maxEntries:16,maxAgeSeconds:86400})]}),"GET"),e.registerRoute((({url:e})=>{if(!(self.origin===e.origin))return!1;return!e.pathname.startsWith("/api/")}),new e.NetworkFirst({cacheName:"others",networkTimeoutSeconds:10,plugins:[new e.ExpirationPlugin({maxEntries:32,maxAgeSeconds:86400})]}),"GET"),e.registerRoute((({url:e})=>!(self.origin===e.origin)),new e.NetworkFirst({cacheName:"cross-origin",networkTimeoutSeconds:10,plugins:[new e.ExpirationPlugin({maxEntries:32,maxAgeSeconds:3600})]}),"GET")}));
+// public/sw.js
+
+// Define a cache name and list of pages to cache.
+const CACHE_NAME = "pwa-cache-v1";
+const OFFLINE_URL = "/offline.html";
+const PAGES_TO_CACHE = [
+  "/", // root (if desired)
+  "/dashboard/home", // home page
+  "/go-gas-from/GoGasForm", // first form page
+  "/go-gas-from/GoGasForm1", // second form page (adjust if the route differs)
+  "/offlinedata/offlinedatatable", // offline data table page
+];
+
+// Installation: Pre-cache the defined pages and the offline fallback.
+self.addEventListener("install", (event) => {
+  event.waitUntil(
+    caches.open(CACHE_NAME).then((cache) => {
+      return cache.addAll([...PAGES_TO_CACHE, OFFLINE_URL]);
+    })
+  );
+  // Activate new service worker immediately.
+  self.skipWaiting();
+});
+
+// Activation: Claim clients immediately.
+self.addEventListener("activate", (event) => {
+  event.waitUntil(self.clients.claim());
+});
+
+// Fetch: For navigations, try to fetch from network first; if that fails, serve the offline fallback.
+self.addEventListener("fetch", (event) => {
+  // We only want to handle navigation requests (e.g., full page loads).
+  if (event.request.mode === "navigate") {
+    event.respondWith(
+      fetch(event.request)
+        .then((response) => {
+          // Optionally, update the cache with the fresh response here.
+          return response;
+        })
+        .catch(() => {
+          // If network fails, return the offline fallback.
+          return caches.match(OFFLINE_URL);
+        })
+    );
+  }
+});

@@ -1,29 +1,16 @@
-// Use ESM `import` instead of `require`
-import withPwa from "next-pwa";
+// next.config.js
+import withPWA from "next-pwa";
 
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  // reactStrictMode: true,
-  // ...nextPWA({
-  //   dest: "public",
-  //   register: true,
-  //   skipWaiting: true,
-  //   disable: process.env.NODE_ENV === "development",
-  // }),
-  distDir: "build",
-  reactStrictMode: true,
-  swcMinify: true,
-  compiler: {
-    removeConsole: process.env.NODE_ENV === "development",
-  },
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
+const pwaOptions = {
+  dest: "public", // Next-pwa will output the service worker here
+  register: true, // Enable automatic registration in production
+  swSrc: "public/sw.js", // Use your custom service worker file (relative to project root)
+  skipWaiting: true, // Force the waiting service worker to become active
+  disable: process.env.NODE_ENV === "development", // Disable SW in development mode
 };
 
-export default withPwa({
-  dest: "public",
-  disable: process.env.NODE_ENV === "development",
-  register: true,
-  skipWaiting: true,
-})(nextConfig);
+const nextConfig = {
+  reactStrictMode: true,
+};
+
+export default withPWA(pwaOptions)(nextConfig);
