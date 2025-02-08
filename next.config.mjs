@@ -14,6 +14,9 @@ export default withPWA({
   disable: process.env.NODE_ENV !== "production",
   register: true,
   skipWaiting: true, // ✅ Forces immediate activation
+  buildExcludes: [
+    /_next\/dynamic-css-manifest\.json$/, // ✅ Prevent Workbox from caching this missing file
+  ],
   mode: "production",
   swSrc: "public/sw-custom.js",
 });

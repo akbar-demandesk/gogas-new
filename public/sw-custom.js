@@ -1,6 +1,7 @@
 import { precacheAndRoute } from "workbox-precaching";
 
-precacheAndRoute(self.__WB_MANIFEST || []); // ✅ Fix: Inject manifest here
+// ✅ Inject Workbox Manifest to Cache Pages & Assets
+precacheAndRoute(self.__WB_MANIFEST || []);
 
 const CACHE_NAME = "gogas-static-cache-v2";
 const DYNAMIC_CACHE_NAME = "gogas-dynamic-cache-v1";
