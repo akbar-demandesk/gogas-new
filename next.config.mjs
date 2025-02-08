@@ -10,7 +10,7 @@ const nextConfig = {
   //   skipWaiting: true,
   //   disable: process.env.NODE_ENV === "development",
   // }),
-  distDir: "build",
+  distDir: ".next",
   reactStrictMode: true,
   swcMinify: true,
   compiler: {
