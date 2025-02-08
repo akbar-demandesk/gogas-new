@@ -199,13 +199,16 @@ function GoGasProcess2() {
       if ("serviceWorker" in navigator && navigator.serviceWorker.controller) {
         caches.match("/dashboard/home").then((response) => {
           if (response) {
-            window.location.href = "/dashboard/home"; // Cached page loads
+            // ✅ Open cached page
+            window.location.href = "/dashboard/home";
           } else {
-            toast.error("Offline mode: Page not available. Try syncing later.");
+            // ✅ Open offline fallback page
+            window.location.href = "/offlinedata/offlinedatatable";
           }
         });
       } else {
-        window.location.href = "/dashboard/home"; // Direct navigation
+        // ✅ Direct navigation in case service worker isn't registered
+        window.location.href = "/dashboard/home";
       }
     }, 1000); // 1-second delay
   };
