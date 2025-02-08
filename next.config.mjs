@@ -17,13 +17,22 @@ export default withPWA({
   disable: process.env.NODE_ENV !== "production",
   register: true,
   skipWaiting: true,
+  buildExcludes: [
+    /_next\/dynamic-css-manifest\.json$/, // ✅ Exclude this file from precaching
+    /_next\/build-manifest\.json$/, // ✅ Prevent caching this too
+    /_next\/export-marker\.json$/, // ✅ Avoid caching unnecessary files
+  ],
   runtimeCaching: [
     // ✅ Ignore missing dynamic CSS manifest file to prevent Workbox error
     {
       urlPattern: /_next\/dynamic-css-manifest\.json$/,
       handler: "NetworkOnly",
     },
-    // ✅ Cache pages but always fetch latest version when online
+    {
+      urlPattern: /_next\/build-manifest\.json$/,
+      handler: "NetworkOnly",
+    },
+    // ✅ Cache all pages, but always fetch the latest when online
     {
       urlPattern: /^https?.*/,
       handler: "NetworkFirst",
@@ -61,7 +70,8 @@ export default withPWA({
     },
     // ✅ Cache static assets (JS, CSS, fonts, images)
     {
-      urlPattern: /\.(?:png|jpg|jpeg|svg|gif|ico|woff2|woff|ttf|eot|json|js|css)$/,
+      urlPattern:
+        /\.(?:png|jpg|jpeg|svg|gif|ico|woff2|woff|ttf|eot|json|js|css)$/,
       handler: "StaleWhileRevalidate",
       options: {
         cacheName: "static-assets-cache",
