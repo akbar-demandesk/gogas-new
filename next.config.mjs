@@ -1,5 +1,5 @@
 import withPWA from "next-pwa";
-import { PHASE_PRODUCTION_BUILD } from "next/constants";
+import { PHASE_PRODUCTION_BUILD } from "next/constants.js";
 
 export default (phase) => {
   const isDev = phase !== PHASE_PRODUCTION_BUILD;
