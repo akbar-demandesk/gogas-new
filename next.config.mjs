@@ -19,45 +19,21 @@
 // // export default withPWA(pwaOptions)(nextConfig);
 
 // import withPWA from "next-pwa";
-
-// const isDev = process.env.NODE_ENV === "development";
-
-// const nextConfig = {
-//   reactStrictMode: true,
-//   eslint: {
-//     ignoreDuringBuilds: true,
-//   },
-//   pwa: {
-//     dest: "public",
-//     register: true,
-//     skipWaiting: true,
-//     disable: isDev,
-//   },
-// };
-
-// export default withPWA(nextConfig);
-import withPWA from "next-pwa";
 import { PHASE_PRODUCTION_BUILD } from "next/constants";
 
-const nextConfig = (phase) => {
-  const isDev = phase !== PHASE_PRODUCTION_BUILD; // Disable PWA in development
+const isDev = phase !== PHASE_PRODUCTION_BUILD;
 
-  return withPWA({
-    reactStrictMode: true,
-    eslint: {
-      ignoreDuringBuilds: true, // Prevent ESLint from failing the build
-    },
-    webpack(config) {
-      config.resolve.fallback = { fs: false }; // Fix Webpack issues with PWA
-      return config;
-    },
-    pwa: {
-      dest: "public",
-      register: true,
-      skipWaiting: true,
-      disable: isDev, // Ensure PWA only works in production
-    },
-  });
+const nextConfig = {
+  reactStrictMode: true,
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  pwa: {
+    dest: "public",
+    register: true,
+    skipWaiting: true,
+    disable: isDev,
+  },
 };
 
-export default nextConfig;
+export default withPWA(nextConfig);
