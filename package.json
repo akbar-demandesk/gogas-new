@@ -20,6 +20,7 @@
     "react-slick": "^0.30.3",
     "react-toastify": "^11.0.3",
     "slick-carousel": "^1.8.1",
+    "universalify": "^2.0.1",
     "workbox-cli": "^7.3.0",
     "workbox-core": "^7.3.0",
     "workbox-expiration": "^7.3.0",
