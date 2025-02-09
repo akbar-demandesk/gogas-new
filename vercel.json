@@ -1,0 +1,14 @@
+{
+    "headers": [
+      {
+        "source": "/servicer-worker/sw-new.js",
+        "headers": [
+          {
+            "key": "Service-Worker-Allowed",
+            "value": "/"
+          }
+        ]
+      }
+    ]
+  }
+  
