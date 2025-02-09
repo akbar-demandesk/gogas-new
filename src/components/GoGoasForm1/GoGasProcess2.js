@@ -125,10 +125,46 @@ function GoGasProcess2() {
   //   }, 1000); // 1-second delay
   // };
 
+  // const markOffline = () => {
+  //   const gogasForm = JSON.parse(localStorage.getItem("gogasForm") || "[]");
+
+  //   const isDuplicate = gogasForm.some(
+  //     (item) =>
+  //       item.couponCode === formData.couponCode && item.status !== "processing"
+  //   );
+
+  //   if (isDuplicate) {
+  //     toast.error("Already exists with this coupon code!");
+  //     return;
+  //   }
+
+  //   const todayEntry = {
+  //     ...formData,
+  //     status: "unsync",
+  //     createdAt: new Date().toISOString(),
+  //   };
+
+  //   const pastEntry = {
+  //     ...formData,
+  //     status: "unsync",
+  //     createdAt: "2024-01-15T12:30:00.000Z",
+  //     couponCode: formData.couponCode + "_past",
+  //   };
+
+  //   // Add both entries (today & past)
+  //   gogasForm.push(todayEntry, pastEntry);
+  //   localStorage.setItem("gogasForm", JSON.stringify(gogasForm));
+
+  //   toast.success("Data saved offline successfully!");
+
+  //   // Wait a short time before navigating to allow toast to display
+  //   setTimeout(() => {
+  //     window.location.href = "/dashboard/home";
+  //   }, 1000); // 1-second delay
+  // };
   const markOffline = () => {
     const gogasForm = JSON.parse(localStorage.getItem("gogasForm") || "[]");
 
-    // Ignore "processing" status when checking for duplicates
     const isDuplicate = gogasForm.some(
       (item) =>
         item.couponCode === formData.couponCode && item.status !== "processing"
@@ -136,14 +172,13 @@ function GoGasProcess2() {
 
     if (isDuplicate) {
       toast.error("Already exists with this coupon code!");
-      return; // Exit the function to avoid saving the duplicate
+      return;
     }
 
-    // Save today's entry
     const todayEntry = {
       ...formData,
       status: "unsync",
-      createdAt: new Date().toISOString(), // Today's date
+      createdAt: new Date().toISOString(),
     };
 
     const pastEntry = {
@@ -153,15 +188,28 @@ function GoGasProcess2() {
       couponCode: formData.couponCode + "_past",
     };
 
-    // Add both entries (today & past)
+    // ✅ Add both entries (today & past)
     gogasForm.push(todayEntry, pastEntry);
     localStorage.setItem("gogasForm", JSON.stringify(gogasForm));
 
     toast.success("Data saved offline successfully!");
 
-    // Wait a short time before navigating to allow toast to display
+    // ✅ Redirect even if offline
     setTimeout(() => {
-      window.location.href = "/dashboard/home";
+      if ("serviceWorker" in navigator && navigator.serviceWorker.controller) {
+        caches.match("/dashboard/home").then((response) => {
+          if (response) {
+            // ✅ Open cached page
+            window.location.href = "/dashboard/home";
+          } else {
+            // ✅ Open offline fallback page
+            window.location.href = "/offlinedata/offlinedatatable";
+          }
+        });
+      } else {
+        // ✅ Direct navigation in case service worker isn't registered
+        window.location.href = "/dashboard/home";
+      }
     }, 1000); // 1-second delay
   };
 

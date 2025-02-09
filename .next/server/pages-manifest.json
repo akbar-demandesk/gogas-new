@@ -1,9 +1,9 @@
 {
   "/_app": "pages/_app.js",
   "/_document": "pages/_document.js",
-  "/offlinedata/offlinedatatable": "pages/offlinedata/offlinedatatable.js",
-  "/dashboard/home": "pages/dashboard/home.js",
   "/": "pages/index.js",
+  "/_error": "pages/_error.js",
+  "/dashboard/home": "pages/dashboard/home.js",
   "/go-gas-form/GoGasForm2": "pages/go-gas-form/GoGasForm2.js",
-  "/_error": "pages/_error.js"
+  "/offlinedata/offlinedatatable": "pages/offlinedata/offlinedatatable.js"
 }

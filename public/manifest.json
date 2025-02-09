@@ -4,24 +4,29 @@
   "theme_color": "#00ff00",
   "background_color": "#ffffff",
   "display": "standalone",
-  "orientation": "any",
+  "orientation": "portrait",
   "scope": "/",
-  "start_url": "/",
+  "start_url": "/index.html",
+  "description": "GoGas PWA for offline usage and smooth experience",
+  "id": "/",
   "icons": [
     {
-      "src": "icons/logo-gagas-192.png",
+      "src": "/icons/logo-gagas-192.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "192x192",
+      "purpose": "any maskable"
     },
     {
-      "src": "icons/logo-gagas-256.png",
+      "src": "/icons/logo-gagas-256.png",
       "type": "image/png",
-      "sizes": "256x256"
+      "sizes": "256x256",
+      "purpose": "any maskable"
     },
     {
-      "src": "icons/logo-gagas-512.png",
+      "src": "/icons/logo-gagas-512.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "512x512",
+      "purpose": "any maskable"
     }
   ]
 }

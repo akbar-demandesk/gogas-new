@@ -554,7 +554,6 @@ function triggerUpdate(msg) {
 
 var { r: __turbopack_require__, f: __turbopack_module_context__, i: __turbopack_import__, s: __turbopack_esm__, v: __turbopack_export_value__, n: __turbopack_export_namespace__, c: __turbopack_cache__, M: __turbopack_modules__, l: __turbopack_load__, j: __turbopack_dynamic__, P: __turbopack_resolve_absolute_path__, U: __turbopack_relative_url__, R: __turbopack_resolve_module_id_path__, b: __turbopack_worker_blob_url__, g: global, __dirname, k: __turbopack_refresh__, m: module, z: __turbopack_require_stub__ } = __turbopack_context__;
 {
-// pages/_app.js
 __turbopack_esm__({
     "default": (()=>App)
 });
@@ -569,8 +568,9 @@ function App({ Component, pageProps }) {
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "App.useEffect": ()=>{
             if ("serviceWorker" in navigator) {
-                navigator.serviceWorker.register("/sw.js").then({
-                    "App.useEffect": ()=>console.log("✅ Service Worker registered")
+                navigator.serviceWorker.register("/sw.js") // Register your custom service worker here
+                .then({
+                    "App.useEffect": ()=>console.log("✅ Service Worker registered successfully")
                 }["App.useEffect"]).catch({
                     "App.useEffect": (error)=>console.error("❌ Service Worker registration failed:", error)
                 }["App.useEffect"]);
@@ -581,7 +581,7 @@ function App({ Component, pageProps }) {
         ...pageProps
     }, void 0, false, {
         fileName: "[project]/src/pages/_app.js",
-        lineNumber: 17,
+        lineNumber: 16,
         columnNumber: 10
     }, this);
 }

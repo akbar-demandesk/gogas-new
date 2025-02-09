@@ -1,5 +1,3 @@
-// public/sw.js
-
 // Define a cache name and list of pages to cache.
 const CACHE_NAME = "pwa-cache-v1";
 const OFFLINE_URL = "/offline.html";
