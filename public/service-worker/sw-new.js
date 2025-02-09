@@ -147,17 +147,13 @@ importScripts(
 if (workbox) {
   console.log("✅ Workbox loaded successfully!");
 
-  // ✅ Skip waiting and take control immediately
-  self.skipWaiting();
+  workbox.core.skipWaiting();
   workbox.core.clientsClaim();
-
-  // ✅ Precache and cleanup outdated caches
   workbox.precaching.precacheAndRoute(self.__WB_MANIFEST || []);
-  workbox.precaching.cleanupOutdatedCaches();
 
-  // ✅ Caching Strategies
+  // ✅ Caching strategies
 
-  // Cache HTML pages using Network First
+  // 🔹 Cache HTML pages using NetworkFirst strategy
   workbox.routing.registerRoute(
     ({ request }) => request.mode === "navigate",
     new workbox.strategies.NetworkFirst({
@@ -166,7 +162,7 @@ if (workbox) {
     })
   );
 
-  // Cache CSS, JS, and Fonts using Stale-While-Revalidate
+  // 🔹 Cache CSS, JS, and Fonts using Stale-While-Revalidate
   workbox.routing.registerRoute(
     ({ request }) => ["style", "script", "font"].includes(request.destination),
     new workbox.strategies.StaleWhileRevalidate({
@@ -174,7 +170,7 @@ if (workbox) {
     })
   );
 
-  // Cache Images using Cache-First with Expiration Policy
+  // 🔹 Cache Images using Cache-First with Expiration
   workbox.routing.registerRoute(
     ({ request }) => request.destination === "image",
     new workbox.strategies.CacheFirst({
@@ -188,33 +184,34 @@ if (workbox) {
     })
   );
 
-  console.log("✅ Workbox setup complete!");
+  console.log("✅ Custom Workbox Service Worker loaded!");
 } else {
   console.error("❌ Workbox failed to load");
 }
 
-// ✅ Offline Fallback Setup
-const CACHE_NAME = "pwa-cache-v2";
-const OFFLINE_URL = "/offline.html"; // Ensure offline.html exists in /public
+// ✅ Offline fallback setup
+const CACHE_NAME = "pwa-cache-v7"; // 🔥 Change version to force update
+const OFFLINE_URL = "/offline.html"; // Ensure this file exists in /public
 
 const PAGES_TO_CACHE = [
-  "/",
+  "/", // ✅ Root route (Homepage)
   "/dashboard/home",
-  "/go-gas-from/GoGasForm",
-  "/go-gas-from/GoGasForm1",
+  "/go-gas-from/go-gas-form",
+  "/go-gas-from/go-gas-form1",
   "/offlinedata/offlinedatatable",
-  OFFLINE_URL,
+  "/offline",
 ];
 
-// ✅ Install Event - Precache important pages for offline use
+// ✅ Install Event - Cache important pages for offline use
 self.addEventListener("install", (event) => {
-  console.log("⚡ Service Worker Installing...");
+  console.log("⚡ Installing Service Worker...");
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
       console.log("🗂️ Caching Pages:", PAGES_TO_CACHE);
-      return cache.addAll(PAGES_TO_CACHE).catch((err) => {
-        console.error("❌ Cache addAll failed:", err);
-      });
+      return cache
+        .addAll(PAGES_TO_CACHE)
+        .then(() => console.log("✅ All pages cached successfully!"))
+        .catch((err) => console.error("❌ Cache addAll failed:", err));
     })
   );
   self.skipWaiting();
@@ -240,12 +237,24 @@ self.addEventListener("activate", (event) => {
 
 // ✅ Fetch Event - Serve cached offline fallback for navigation requests
 self.addEventListener("fetch", (event) => {
-  if (event.request.mode === "navigate") {
-    event.respondWith(
-      fetch(event.request).catch(() => {
-        console.warn("⚠️ Network failed, serving offline.html");
-        return caches.match(OFFLINE_URL);
+  console.log("🔍 Fetching:", event.request.url);
+  event.respondWith(
+    fetch(event.request)
+      .then((response) => {
+        console.log("✅ Fetched from network:", event.request.url);
+        return response;
       })
-    );
-  }
+      .catch(() => {
+        console.warn("⚠️ Network failed, trying cache:", event.request.url);
+        return caches.match(event.request).then((cachedResponse) => {
+          return cachedResponse || caches.match(OFFLINE_URL);
+        });
+      })
+  );
 });
+
+// ✅ Debugging: Log Cached Files
+caches
+  .open(CACHE_NAME)
+  .then((cache) => cache.keys())
+  .then((keys) => console.log("Cached files:", keys));

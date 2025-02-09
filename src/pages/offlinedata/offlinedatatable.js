@@ -4,6 +4,12 @@ import React, { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+export async function getStaticProps() {
+  return {
+    props: {}, // Required to enable static generation
+  };
+}
+
 function OfflineDataTable() {
   const [offlineData, setOfflineData] = useState([]);
   const [selectedItems, setSelectedItems] = useState([]);

@@ -2,6 +2,12 @@ import BottomNavbar from "@/components/BottomNavbar/BottomNavbar";
 import GoGasFormProcess1 from "@/components/GoGoasForm1/GoGasProcess1";
 import React from "react";
 
+export async function getStaticProps() {
+  return {
+    props: {}, // Required to enable static generation
+  };
+}
+
 function GoGasForm() {
   return (
     <>

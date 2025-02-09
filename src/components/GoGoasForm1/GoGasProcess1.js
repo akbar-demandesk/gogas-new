@@ -7,7 +7,7 @@ export default function GoGasForm() {
 
   const handleGoTo = () => {
     if (selectedForm === "GoGas ALPG Sales with Coupon") {
-      router.push("/go-gas-form/GoGasForm2");
+      router.push("/go-gas-form/go-gas-form1");
     }
   };
 

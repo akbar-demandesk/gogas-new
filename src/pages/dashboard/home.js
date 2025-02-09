@@ -4,6 +4,12 @@ import { IoCloudOfflineOutline } from "react-icons/io5";
 import { useRouter } from "next/router";
 import BottomNavbar from "@/components/BottomNavbar/BottomNavbar";
 
+export async function getStaticProps() {
+  return {
+    props: {}, // Required to enable static generation
+  };
+}
+
 export default function Home() {
   const router = useRouter();
 
