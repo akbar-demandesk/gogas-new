@@ -155,7 +155,7 @@ if (workbox) {
 
   // 🔹 Cache HTML pages using NetworkFirst strategy
   workbox.routing.registerRoute(
-    ({ request }) => request.mode === "navigate",
+    ({ request }) => request.mode === "navigate", // ✅ Fixes `index.html` issue in Next.js
     new workbox.strategies.NetworkFirst({
       cacheName: "pages-cache",
       networkTimeoutSeconds: 10,
@@ -190,8 +190,8 @@ if (workbox) {
 }
 
 // ✅ Offline fallback setup
-const CACHE_NAME = "pwa-cache-v7"; // 🔥 Change version to force update
-const OFFLINE_URL = "/offline.html"; // Ensure this file exists in /public
+const CACHE_NAME = "pwa-cache-v8"; // 🔥 Change version to force update
+const OFFLINE_URL = "/offline"; // ✅ Use `/offline` instead of `offline.html`
 
 const PAGES_TO_CACHE = [
   "/", // ✅ Root route (Homepage)
@@ -199,10 +199,10 @@ const PAGES_TO_CACHE = [
   "/go-gas-from/go-gas-form",
   "/go-gas-from/go-gas-form1",
   "/offlinedata/offlinedatatable",
-  "/offline",
+  OFFLINE_URL, // ✅ Correct Next.js offline page
 ];
 
-// ✅ Install Event - Cache important pages for offline use
+// ✅ Install Event - Cache Important Pages
 self.addEventListener("install", (event) => {
   console.log("⚡ Installing Service Worker...");
   event.waitUntil(
@@ -217,7 +217,7 @@ self.addEventListener("install", (event) => {
   self.skipWaiting();
 });
 
-// ✅ Activate Event - Cleanup old caches
+// ✅ Activate Event - Cleanup Old Caches
 self.addEventListener("activate", (event) => {
   console.log("⚡ Service Worker Activated!");
   event.waitUntil(
@@ -235,7 +235,7 @@ self.addEventListener("activate", (event) => {
   self.clients.claim();
 });
 
-// ✅ Fetch Event - Serve cached offline fallback for navigation requests
+// ✅ Fetch Event - Serve Cached Pages When Offline
 self.addEventListener("fetch", (event) => {
   console.log("🔍 Fetching:", event.request.url);
   event.respondWith(
