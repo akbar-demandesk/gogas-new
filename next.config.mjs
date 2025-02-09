@@ -18,7 +18,7 @@
 
 // // export default withPWA(pwaOptions)(nextConfig);
 
-// import withPWA from "next-pwa";
+import withPWA from "next-pwa";
 import { PHASE_PRODUCTION_BUILD } from "next/constants";
 
 const isDev = phase !== PHASE_PRODUCTION_BUILD;
