@@ -20,6 +20,8 @@
 
 import withPWA from "next-pwa";
 
+const isDev = process.env.NODE_ENV === "development";
+
 const nextConfig = {
   reactStrictMode: true,
   eslint: {
@@ -29,7 +31,7 @@ const nextConfig = {
     dest: "public",
     register: true,
     skipWaiting: true,
-    disable: process.env.NODE_ENV === "development", // Disable PWA in development mode
+    disable: isDev,
   },
 };
 
