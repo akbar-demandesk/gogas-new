@@ -36,32 +36,28 @@
 // };
 
 // export default withPWA(nextConfig);
-
 import withPWA from "next-pwa";
+import { PHASE_PRODUCTION_BUILD } from "next/constants";
 
-const isDev = process.env.NODE_ENV === "development";
+const nextConfig = (phase) => {
+  const isDev = phase !== PHASE_PRODUCTION_BUILD; // Disable PWA in development
 
-const nextConfig = withPWA({
-  reactStrictMode: true,
-  eslint: {
-    ignoreDuringBuilds: true, // Ensures no ESLint warnings break the build
-  },
-  webpack(config) {
-    config.resolve.fallback = { fs: false }; // Prevents file system issues in Webpack
-    return config;
-  },
-  experimental: {
-    emotion: { sourceMap: true, autoLabel: "always", labelFormat: "[local]" },
-  },
-  compiler: {
-    styledComponents: true, // Ensures styled-components support
-  },
-  pwa: {
-    dest: "public", // PWA files output here
-    register: true,
-    skipWaiting: true,
-    disable: isDev, // Disable PWA in development mode
-  },
-});
+  return withPWA({
+    reactStrictMode: true,
+    eslint: {
+      ignoreDuringBuilds: true, // Prevent ESLint from failing the build
+    },
+    webpack(config) {
+      config.resolve.fallback = { fs: false }; // Fix Webpack issues with PWA
+      return config;
+    },
+    pwa: {
+      dest: "public",
+      register: true,
+      skipWaiting: true,
+      disable: isDev, // Ensure PWA only works in production
+    },
+  });
+};
 
 export default nextConfig;
