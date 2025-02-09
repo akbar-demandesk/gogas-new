@@ -5,8 +5,8 @@ export default function App({ Component, pageProps }) {
   useEffect(() => {
     if ("serviceWorker" in navigator) {
       navigator.serviceWorker
-        .register("/sw.js") // Register your custom service worker here
-        .then(() => console.log("✅ Service Worker registered successfully"))
+        .register("/sw-new.js", { scope: "/" }) // 🔥 Ensure the correct scope
+        .then((reg) => console.log("✅ Service Worker registered", reg))
         .catch((error) =>
           console.error("❌ Service Worker registration failed:", error)
         );

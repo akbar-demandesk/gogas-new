@@ -568,9 +568,11 @@ function App({ Component, pageProps }) {
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "App.useEffect": ()=>{
             if ("serviceWorker" in navigator) {
-                navigator.serviceWorker.register("/sw.js") // Register your custom service worker here
+                navigator.serviceWorker.register("/sw-new.js", {
+                    scope: "/"
+                }) // 🔥 Ensure the correct scope
                 .then({
-                    "App.useEffect": ()=>console.log("✅ Service Worker registered successfully")
+                    "App.useEffect": (reg)=>console.log("✅ Service Worker registered", reg)
                 }["App.useEffect"]).catch({
                     "App.useEffect": (error)=>console.error("❌ Service Worker registration failed:", error)
                 }["App.useEffect"]);

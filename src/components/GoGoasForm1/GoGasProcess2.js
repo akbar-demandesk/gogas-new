@@ -165,6 +165,7 @@ function GoGasProcess2() {
   const markOffline = () => {
     const gogasForm = JSON.parse(localStorage.getItem("gogasForm") || "[]");
 
+    // Check if the same couponCode exists (excluding "processing" status)
     const isDuplicate = gogasForm.some(
       (item) =>
         item.couponCode === formData.couponCode && item.status !== "processing"
@@ -175,6 +176,7 @@ function GoGasProcess2() {
       return;
     }
 
+    // Create new entries
     const todayEntry = {
       ...formData,
       status: "unsync",
@@ -188,28 +190,15 @@ function GoGasProcess2() {
       couponCode: formData.couponCode + "_past",
     };
 
-    // ✅ Add both entries (today & past)
+    // ✅ Save both entries (today & past)
     gogasForm.push(todayEntry, pastEntry);
     localStorage.setItem("gogasForm", JSON.stringify(gogasForm));
 
     toast.success("Data saved offline successfully!");
 
-    // ✅ Redirect even if offline
+    // ✅ Redirect after saving
     setTimeout(() => {
-      if ("serviceWorker" in navigator && navigator.serviceWorker.controller) {
-        caches.match("/dashboard/home").then((response) => {
-          if (response) {
-            // ✅ Open cached page
-            window.location.href = "/dashboard/home";
-          } else {
-            // ✅ Open offline fallback page
-            window.location.href = "/offlinedata/offlinedatatable";
-          }
-        });
-      } else {
-        // ✅ Direct navigation in case service worker isn't registered
-        window.location.href = "/dashboard/home";
-      }
+      window.location.href = "/dashboard/home"; // 🔥 Always redirect to `/dashboard/home`
     }, 1000); // 1-second delay
   };
 
@@ -330,7 +319,7 @@ function GoGasProcess2() {
           {step === 1 && (
             <>
               <div className="mb-4">
-                <label className="block text-black-700 text-md font-medium mb-2">
+                <label className="block text-black-700 text-base font-medium mb-2">
                   1. Coupon code <span className="text-red-500">*</span>
                 </label>
 
@@ -342,13 +331,13 @@ function GoGasProcess2() {
                     value={formData.couponCode}
                     onChange={handleChange}
                     placeholder="Enter coupon code"
-                    className="w-full border border-gray-300 p-2 pl-10 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+                    className="w-full border border-gray-300 p-2 pl-10 rounded-lg text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-600"
                   />
                 </div>
               </div>
 
               <div className="mb-6">
-                <label className="block text-black-700 text-md font-medium mb-2">
+                <label className="block text-black-700 text-base font-medium mb-2">
                   2. Scan QR
                 </label>
                 <div className="flex justify-center mb-4">
@@ -366,7 +355,7 @@ function GoGasProcess2() {
                 )}
               </div>
               <div className="mb-4">
-                <label className="block text-black-700 text-md font-medium mb-2">
+                <label className="block text-black-700 text-base font-medium mb-2">
                   3. Cash To Be Collected{" "}
                   <span className="text-red-500">*</span>
                 </label>
@@ -376,7 +365,7 @@ function GoGasProcess2() {
                   value={formData.cashToBeCollected}
                   onChange={handleChange}
                   placeholder="Enter amount"
-                  className="w-full border border-gray-300 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+                  className="w-full border border-gray-300 text-black p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
                 />
               </div>
 
@@ -392,7 +381,7 @@ function GoGasProcess2() {
           {step === 2 && (
             <>
               <div className="mb-6">
-                <label className="block text-black-700 text-md font-medium mb-2">
+                <label className="block text-black-700 text-base font-medium mb-2">
                   4. Amount To Be Mentioned in Despenser
                 </label>
                 <input
@@ -401,7 +390,7 @@ function GoGasProcess2() {
                   value={formData.dispenserAmount}
                   onChange={handleChange}
                   placeholder="Enter Dispenser Amount"
-                  className="w-full border border-gray-300 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+                  className="w-full border border-gray-300 p-2 text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
                 />
               </div>
 
@@ -527,7 +516,7 @@ function GoGasProcess2() {
               </div>
 
               <div className="mb-4">
-                <label className="block text-black-700 text-md font-medium mb-2">
+                <label className="block text-black-700 text-base font-medium mb-2">
                   6. Maximum Extraa Amount (in Rs)
                 </label>
                 <input
@@ -536,7 +525,7 @@ function GoGasProcess2() {
                   value={formData.extraAmount}
                   onChange={handleChange}
                   placeholder="Enter Extra Amount"
-                  className="w-full border border-gray-300 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+                  className="w-full border border-gray-300 p-2 text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
                 />
               </div>
 

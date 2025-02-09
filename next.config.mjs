@@ -1,19 +1,36 @@
-// next.config.js
-import withPWA from "next-pwa";
+// // next.config.js
+// import withPWA from "next-pwa";
 
-const pwaOptions = {
-  dest: "public", // Next-pwa will output the service worker here
-  register: true, // Enable automatic registration in production
-  swSrc: "public/sw.js", // Use your custom service worker file (relative to project root)
-  skipWaiting: true, // Force the waiting service worker to become active
-  disable: process.env.NODE_ENV === "development", // Disable SW in development mode
-};
+// const pwaOptions = {
+//   dest: "public", // Next-pwa will output the service worker here
+//   register: true, // Enable automatic registration in production
+//   // swSrc: "public/sw.js", // Use your custom service worker file (relative to project root)
+//   skipWaiting: true, // Force the waiting service worker to become active
+//   disable: process.env.NODE_ENV === "development", // Disable SW in development mode
+// };
+
+// const nextConfig = {
+//   reactStrictMode: true,
+//   eslint: {
+//     ignoreDuringBuilds: true,
+//   },
+// };
+
+// export default withPWA(pwaOptions)(nextConfig);
+
+import withPWA from "next-pwa";
 
 const nextConfig = {
   reactStrictMode: true,
   eslint: {
     ignoreDuringBuilds: true,
   },
+  pwa: {
+    dest: "public",
+    register: true,
+    skipWaiting: true,
+    disable: process.env.NODE_ENV === "development", // Disable PWA in development mode
+  },
 };
 
-export default withPWA(pwaOptions)(nextConfig);
+export default withPWA(nextConfig);

@@ -197,8 +197,10 @@ var __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$
 function App({ Component, pageProps }) {
     (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useEffect"])(()=>{
         if ("serviceWorker" in navigator) {
-            navigator.serviceWorker.register("/sw.js") // Register your custom service worker here
-            .then(()=>console.log("✅ Service Worker registered successfully")).catch((error)=>console.error("❌ Service Worker registration failed:", error));
+            navigator.serviceWorker.register("/sw-new.js", {
+                scope: "/"
+            }) // 🔥 Ensure the correct scope
+            .then((reg)=>console.log("✅ Service Worker registered", reg)).catch((error)=>console.error("❌ Service Worker registration failed:", error));
         }
     }, []);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(Component, {
@@ -814,28 +816,23 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$pages$2f$go$2d$gas$2d
 ;
 ;
 function Home() {
-    return(// <div className="min-h-screen bg-[#FFE6A9] flex items-center justify-center">
-    //   <div className="text-center p-8 bg-white rounded-lg shadow-lg">
-    //     <GoGasForm />
-    //   </div>
-    // </div>
-    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$pages$2f$go$2d$gas$2d$form$2f$GoGasForm$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/src/pages/index.js",
-                lineNumber: 12,
+                lineNumber: 7,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/src/pages/index.js",
-            lineNumber: 11,
+            lineNumber: 6,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/pages/index.js",
-        lineNumber: 10,
+        lineNumber: 5,
         columnNumber: 5
-    }, this));
+    }, this);
 }
 }}),
 
