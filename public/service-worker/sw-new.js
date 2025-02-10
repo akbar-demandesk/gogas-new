@@ -155,7 +155,7 @@ if (workbox) {
 
   // 🔹 Cache HTML pages using NetworkFirst strategy
   workbox.routing.registerRoute(
-    ({ request }) => request.mode === "navigate", // ✅ Fixes `index.html` issue in Next.js
+    ({ request }) => request.mode === "navigate",
     new workbox.strategies.NetworkFirst({
       cacheName: "pages-cache",
       networkTimeoutSeconds: 10,
